@@ -14,7 +14,6 @@ function App() {
   return (
       <div>
          <SignUp/>
-         <Button variant="contained">Hello World</Button>
       </div>
   ); 
 }
