@@ -1,4 +1,3 @@
-
 import { TextField } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
@@ -66,7 +65,7 @@ const Form = ({ handleClose }) => {
         />
 
         <div>
-            <Button className='button1' type="submit" variant="contained" color='#12565A'>
+            <Button className="button1" type="submit" variant="contained">
                 Sign Up
             </Button>
       
@@ -75,9 +74,6 @@ const Form = ({ handleClose }) => {
             </p>
         </div>
           
-       
-            
-           
     
     </form>
   );
