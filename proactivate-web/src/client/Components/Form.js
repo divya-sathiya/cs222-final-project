@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
+//present the form username, email and password for user sign up
 const Form = ({ handleClose }) => {
 
   const classes = useStyles();
@@ -65,7 +66,7 @@ const Form = ({ handleClose }) => {
         />
 
         <div>
-            <Button className="button1" type="submit" variant="contained">
+           <Button className = "button1" type="submit" variant="contained"   >
                 Sign Up
             </Button>
       
@@ -73,8 +74,6 @@ const Form = ({ handleClose }) => {
              <Link className='logRout_b' to="/Login"> Log-In</Link>
             </p>
         </div>
-          
-    
     </form>
   );
 };

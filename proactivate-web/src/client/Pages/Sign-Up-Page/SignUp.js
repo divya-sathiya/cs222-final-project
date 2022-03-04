@@ -4,8 +4,8 @@ import { useState } from 'react';
 import ModalDialog from '../../Components/ModalDialog';
 
 
+//Pop up the sign up component when clicked, close otherwise
 const SignUp = () => {
-
   const [open,setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -21,8 +21,6 @@ const SignUp = () => {
     </Button>
       <ModalDialog open={open} handleClose={handleClose} />
    </div>
-    
-    
   );
 };
   
