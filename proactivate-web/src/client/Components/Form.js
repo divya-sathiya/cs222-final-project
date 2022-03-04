@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import React, { useState } from 'react';
 import './Form.css';
 import './fonts.css'
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -14,12 +15,12 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'center',
       padding: theme.spacing(10),
   '& .MuiTextField-root': {
-        margin: theme.spacing(1),
+        margin: theme.spacing(2),
         width: '300px',
       },
   '& .MuiButtonBase-root': {
         margin: theme.spacing(2),
-        width: '300px'
+        width: '300px',
       },
     },
   }));
@@ -39,7 +40,7 @@ const Form = ({ handleClose }) => {
 
 
   return (
-    <form className={classes.root}>
+     <form className={classes.root}>
         <h className = "title">PROACTIVATE.</h>
         <TextField 
             label="Username" 
@@ -65,13 +66,19 @@ const Form = ({ handleClose }) => {
         />
 
         <div>
-            <Button className = "button1" type="submit" variant="contained" color="#11848a">
-                sign up
+            <Button className='button1' type="submit" variant="contained" color='#12565A'>
+                Sign Up
             </Button>
-            <p className='signin'>Already have an accout? Log-In</p>
+      
+            <p className='logRout'> Already have an account? 
+             <Link className='logRout_b' to="/Login"> Log-In</Link>
+            </p>
         </div>
-
+          
        
+            
+           
+    
     </form>
   );
 };
