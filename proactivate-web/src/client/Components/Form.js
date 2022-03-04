@@ -3,7 +3,9 @@ import { TextField } from '@mui/material';
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import React, { useState } from 'react';
-
+import './Form.css';
+import './fonts.css'
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -11,13 +13,14 @@ const useStyles = makeStyles(theme => ({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: theme.spacing(2),
+      padding: theme.spacing(10),
   '& .MuiTextField-root': {
-        margin: theme.spacing(1),
+        margin: theme.spacing(2),
         width: '300px',
       },
   '& .MuiButtonBase-root': {
         margin: theme.spacing(2),
+        width: '300px',
       },
     },
   }));
@@ -25,34 +28,27 @@ const useStyles = makeStyles(theme => ({
 const Form = ({ handleClose }) => {
 
   const classes = useStyles();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(firstName, lastName, email, password);
+    console.log(username, email, password);
     handleClose();
   };
 
 
   return (
-    <form className={classes.root}>
+     <form className={classes.root}>
+        <h className = "title">PROACTIVATE.</h>
         <TextField 
-            label="First Name" 
+            label="Username" 
             variant="outlined" 
             required
-            value={firstName}
-            onChange={e => setFirstName(e.target.value)} 
+            value={username}
+            onChange={e => setUsername(e.target.value)} 
             />
-        <TextField 
-            label="Last Name"
-            variant="outlined" 
-            required 
-            value={lastName}
-            onChange={e => setLastName(e.target.value)} 
-        />
         <TextField 
             label="Email" 
             variant="outlined" 
@@ -70,13 +66,19 @@ const Form = ({ handleClose }) => {
         />
 
         <div>
-            <Button variant="contained">
-                Cancel
+            <Button className='button1' type="submit" variant="contained" color='#12565A'>
+                Sign Up
             </Button>
-            <Button type="submit" variant="contained" color="primary">
-                Signup
-            </Button>
+      
+            <p className='logRout'> Already have an account? 
+             <Link className='logRout_b' to="/Login"> Log-In</Link>
+            </p>
         </div>
+          
+       
+            
+           
+    
     </form>
   );
 };
