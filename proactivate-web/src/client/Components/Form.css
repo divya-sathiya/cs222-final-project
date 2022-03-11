@@ -27,6 +27,16 @@
     margin-bottom: 6%;
 }
 
+.paragraph
+{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 22px;
+    text-align: center;
+    color: #12565A;
+}
+
 .logRout
 {
     width: 293px;
