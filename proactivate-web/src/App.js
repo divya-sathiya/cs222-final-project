@@ -24,12 +24,13 @@ function App() {
 const Main = () => {
   return (
     <Routes>
-      <Route path='/' element={<Login/>}/>
-      <Route path='/SignUp' element={<SignUp/>}/>
-      <Route path='/Dashboard' element={<Dashboard/>}/>
-      <Route path='/Timer' element={<Timer/>}/>
-      <Route path='/Schedule' element={<Schedule/>}/>
-      <Route path='/Deadline' element={<Deadline/>}/>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/SignUp' element={<SignUp/>}/>
+        <Route path='/Dashboard' element={<Dashboard/>}/>
+        <Route path='/Timer' element={<Timer/>}/>
+        <Route path='/Schedule' element={<Schedule/>}/>
+        <Route path='/Deadline' element={<Deadline/>}/>
     </Routes>
   );
 }
