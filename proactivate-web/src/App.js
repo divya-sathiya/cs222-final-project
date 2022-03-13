@@ -24,7 +24,7 @@ function App() {
 const Main = () => {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={<Login />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/Dashboard" element={<Dashboard />} />

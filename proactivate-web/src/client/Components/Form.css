@@ -24,6 +24,15 @@
   margin-bottom: 6%;
 }
 
+.paragraph {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 22px;
+  text-align: center;
+  color: #12565a;
+}
+
 .logRout {
   width: 293px;
   height: 22px;
@@ -32,6 +41,10 @@
   font-weight: lighter;
   font-size: 13px;
   line-height: 22px;
+
+  text-align: center;
+  color: #12565a;
+  text-decoration: none;
 
   text-align: center;
   color: #12565a;
