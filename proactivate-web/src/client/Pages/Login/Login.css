@@ -1,4 +1,12 @@
-.button1 {
+.Login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.button2 {
   font-family: "Montserrat", sans-serif;
   background-color: #12565a;
   color: white;
@@ -9,18 +17,18 @@
   line-height: 15px;
 }
 
-.button1:hover {
+.button2:hover {
   font-family: "Montserrat", sans-serif;
   background-color: #11848a;
 }
 
-.title {
+.title2 {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 45px;
   line-height: 50px;
   text-align: center;
-  color: #12565a;
+  color: white;
   margin-bottom: 6%;
 }
 
@@ -30,10 +38,10 @@
   font-size: 13px;
   line-height: 22px;
   text-align: center;
-  color: #12565a;
+  color: white;
 }
 
-.logRout {
+.logRout2 {
   width: 293px;
   height: 22px;
   font-family: "Montserrat", sans-serif;
@@ -43,14 +51,10 @@
   line-height: 22px;
 
   text-align: center;
-  color: #12565a;
-  text-decoration: none;
-
-  text-align: center;
-  color: #12565a;
+  color: white;
   text-decoration: none;
 }
-.logRout_b {
+.logRout_b2 {
   width: 293px;
   height: 22px;
   font-family: "Montserrat", sans-serif;
@@ -60,9 +64,9 @@
   line-height: 22px;
   align-items: center;
   text-align: center;
-  color: #12565a;
+  color: white;
   text-decoration: none;
 }
-.logRout_b:hover {
+.logRout_b2:hover {
   color: #11848a;
 }
