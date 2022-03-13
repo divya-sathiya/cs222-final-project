@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Deadline = () => {
-    return(
-        <h1>I'm in Deadline</h1>
-    )
+  return <h1>I'm in Deadline</h1>;
 };
 
-export default Deadline; 
+export default Deadline;
