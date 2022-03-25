@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import {render} from 'react-dom';
 import Box from '@mui/material/Box';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
@@ -19,33 +20,27 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedProgressBars() {
-    const [progress, setProgress] = React.useState(0);
-
-    React.useEffect(() => {
-        const timer = setInterval(() => {
-          setProgress((oldProgress) => {
-            if (oldProgress === 100) {
-              return 0;
-            }
-            const diff = Math.random() * 10;
-            return Math.min(oldProgress + diff, 100);
-          });
-        }, 500);
+function getProgressValue(issue_date){
+    let curr = new Date();
+    console.log(curr);
+    console.log(issue_date);
+    let timePassed =  (new Date(issue_date)).getTime()-curr.getTime();
+    console.log(timePassed);
     
-        return () => {
-          clearInterval(timer);
-        };
-      }, []);
+    let msInADay = 1000*60*60*24;
+    let toReturn = 100-(timePassed/msInADay)*10;
+    if (toReturn<0) {return 0}
+    else if (toReturn < 1){return 20}
+    console.log(toReturn);
+    return toReturn;
+ }
 
 
-
-
-  return (
-    <Box sx={{ flexGrow: 1 , width: '30%'}}>
-
-      <br />
-      <BorderLinearProgress variant="determinate" value={progress} />
-    </Box>
-  );
+export default function CustomizedProgressBars() {
+    return (
+        <Box sx={{ flexGrow: 1 , width: '30%'}}>
+        <br />
+        <BorderLinearProgress variant="determinate" value={getProgressValue('Fri Mar 30 2022 14:54:13 GMT-0500 (Central Daylight Time)')} />
+        </Box>
+        );  
 }
