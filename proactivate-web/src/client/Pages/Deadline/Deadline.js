@@ -1,7 +1,12 @@
 import React from "react";
-
+import CustomizedProgressBars from "../../Components/ProgressBar.js";
 const Deadline = () => {
-  return <h1>I'm in Deadline</h1>;
+  return( 
+  <>
+ 
+  <CustomizedProgressBars />
+  </>
+   );
 };
 
 export default Deadline;

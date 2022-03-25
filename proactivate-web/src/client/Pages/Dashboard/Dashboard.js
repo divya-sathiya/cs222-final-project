@@ -32,8 +32,8 @@ const Dashboard = () => {
       <Grid container  justify="center" spacing={2} columns={16}>
         <Grid  justify="center" item xs={8}>
             <div className ="userInfo">
-                  <Stack direction="row" spacing={2}>
-                      <Avatar sx={{ width: 200, height: 200 }} />
+                  <Stack direction="row" spacing={2}  style={{paddingBottom: 50}}  >
+                      <Avatar sx={{ width: 200, height: 200 }}/>
                   </Stack>
 
                   <div className="information">
@@ -57,7 +57,7 @@ const Dashboard = () => {
                               <CardMedia
                                   component="img"
                                   height="140"
-                                  image="./public/images/photo1.jpeg"
+                                  image="/images/photo1.jpeg"
                                   alt="Schedule" />
                               <CardContent>
                                   <Typography gutterBottom variant="h5" component="div">
@@ -78,8 +78,8 @@ const Dashboard = () => {
                               <CardMedia
                                   component="img"
                                   height="140"
-                                  image="./public/images/photo1.jpeg"
-                                  height="140"
+                                  image="/images/photo2.jpeg"
+                              
                                   alt="Deadline" />
                               <CardContent>
                                   <Typography gutterBottom variant="h5" component="div">
@@ -97,7 +97,7 @@ const Dashboard = () => {
                               <CardMedia
                                   component="img"
                                   height="140"
-                                  image="./public/images/photo1.jpeg"
+                                  image="/images/photo3.jpeg"
                                   alt="Timer" />
                               <CardContent>
                                   <Typography gutterBottom variant="h5" component="div">
