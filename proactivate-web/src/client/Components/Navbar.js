@@ -49,18 +49,10 @@ const ResponsiveAppBar = () => {
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           ></Typography>
 
-           {/* <Box
-            component="img"
-            sx={{
-            height: 50,
-            }}
-            alt="Your logo."
-            src="/../assets/logo.svg"
-          />  */}
 
-          <Typography>
+          
               <Logo height={50} />
-          </Typography>
+          
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
