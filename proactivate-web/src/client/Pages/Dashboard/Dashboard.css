@@ -6,7 +6,7 @@ h {
 .userInfo
 {
     margin-top: 15%;
-    margin-bottom: 5%;
+    margin-bottom: 15%;
     transform: translate(50%);
     color: white;
     
@@ -14,7 +14,20 @@ h {
 
 .information
 { 
-    margin-top: 15%;
+    margin-top: 10%;
+    margin-bottom: 10%;
     display: flex;
+}
+
+
+.cards
+{
+  margin-top: 15%;
+  margin-left: 5%;
+}
+
+.MuiButtonBase-root
+{
+  padding-bottom: 6px;
 }
 

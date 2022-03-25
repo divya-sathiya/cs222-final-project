@@ -15,7 +15,9 @@ import Login from "./client/Pages/Login/Login";
 function App() {
   return (
     <div>
+      <div className = "navbar">
       <Navbar />
+      </div>
       <Main />
     </div>
   );

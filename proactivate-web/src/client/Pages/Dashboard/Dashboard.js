@@ -28,7 +28,7 @@ const Dashboard = () => {
   return (
 <>
     
-<Box sx={{ flexGrow: 1 }}>
+<Box sx={{ flexGrow: 1 }} >
       <Grid container  justify="center" spacing={2} columns={16}>
         <Grid  justify="center" item xs={8}>
             <div className ="userInfo">
@@ -46,11 +46,12 @@ const Dashboard = () => {
     
                   <Grid item xs={8}>
                   
-                      <div className="cards" >
+                      <div className="cards" style={{ padding: 23 }}>
       <Card sx={{ maxWidth: 310 }} >
+
                       <CardActionArea>
                           <Link
-                              style={{ textDecoration: "none", color: "black" }}
+                              style={{ textDecoration: "none", color: "black"}}
                               to="/Schedule"
                           >
                               <CardMedia
