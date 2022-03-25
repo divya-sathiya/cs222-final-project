@@ -11,7 +11,6 @@ export default function MaterialUIPickers() {
 
   const handleChange = (newValue) => {
     setValue(newValue);
-    console.log(value)
   };
 
   return (
@@ -21,7 +20,8 @@ export default function MaterialUIPickers() {
           value={value}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
-        />  
+        />
+         
     </LocalizationProvider>
    
   );
