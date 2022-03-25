@@ -1,3 +1,20 @@
 h {
   color: black;
 }
+
+
+.userInfo
+{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    transform: translate(50%);
+    color: white;
+    
+};
+
+.information
+{ 
+    margin-top: 15%;
+    display: flex;
+}
+

@@ -15,6 +15,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 
+import Logo from "/Users/Brenda/Documents/cs225/course-project-ap-a/proactivate-web/src/assets/logo.svg";
 const pages = ["Schedule", "Deadline", "Timer"];
 const settings = ["My Account", "Dashboard", "SignUp", "Login"];
 
@@ -38,7 +39,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar style={{ background: 'white' }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -48,14 +49,14 @@ const ResponsiveAppBar = () => {
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           ></Typography>
 
-          {/* <Box
+           <Box
             component="img"
             sx={{
-            height: 64,
+            height: 50,
             }}
             alt="Your logo."
-            src={Logo}
-        /> */}
+            src= {Logo}
+          /> 
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -90,7 +91,7 @@ const ResponsiveAppBar = () => {
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link
-                      style={{ textDecoration: "none", color: "white" }}
+                      style={{ textDecoration: "none", color: "black" }}
                       to={`/${page}`}
                     >
                       {page}
@@ -114,7 +115,7 @@ const ResponsiveAppBar = () => {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 <Link
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "#12565a" }}
                   to={`/${page}`}
                 >
                   {page}
@@ -149,7 +150,7 @@ const ResponsiveAppBar = () => {
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
                     <Link
-                      style={{ textDecoration: "none", color: "black" }}
+                      style={{ textDecoration: "none", color: "#12565a" }}
                       to={`/${setting}`}
                     >
                       {setting}
