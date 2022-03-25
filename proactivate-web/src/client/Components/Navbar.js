@@ -14,8 +14,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import { ReactComponent as Logo } from './logo.svg';
 
-import Logo from "/Users/Brenda/Documents/cs225/course-project-ap-a/proactivate-web/src/assets/logo.svg";
 const pages = ["Schedule", "Deadline", "Timer"];
 const settings = ["My Account", "Dashboard", "SignUp", "Login"];
 
@@ -49,14 +49,10 @@ const ResponsiveAppBar = () => {
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           ></Typography>
 
-           <Box
-            component="img"
-            sx={{
-            height: 50,
-            }}
-            alt="Your logo."
-            src= {Logo}
-          /> 
+
+          
+              <Logo height={50} />
+          
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -127,7 +123,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar src="/broken-image.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
