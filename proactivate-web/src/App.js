@@ -1,6 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { useEffect, useState } from 'react';
+
 import Dashboard from "./client/Pages/Dashboard/Dashboard";
 import Navbar from "./client/Components/Navbar.js";
 import Timer from "./client/Pages/Timer/Timer";
@@ -13,7 +18,7 @@ import SignUp from "./client/Pages/SignUp/SignUp";
 import Login from "./client/Pages/Login/Login";
 
 function App() {
-  return (
+    return (
     <div>
       <div className = "navbar">
       <Navbar />
