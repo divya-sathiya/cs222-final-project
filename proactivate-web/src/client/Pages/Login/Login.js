@@ -91,7 +91,7 @@ const Login = () => {
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
           /> */}
-          <button onClick={signInWithGoogle}>Sign in with google</button>
+          <button class="login-with-google-btn" onClick={signInWithGoogle}>Sign in with google</button>
           <h1>{localStorage.getItem("name")}</h1>
           <h1>{localStorage.getItem("email")}</h1>
           <img src={localStorage.getItem("profilePic")} />
