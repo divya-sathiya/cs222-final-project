@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ModalDialog2 from "../../Components/ModalDialog2";
 import "./Login.css";
+import { signInWithGoogle } from "../../../server/config/firebase-config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,13 +84,17 @@ const Login = () => {
             {" "}
             ------------------------------ OR -------------------------------
           </p>
-          <GoogleLogin
+          {/* <GoogleLogin
             clientId="393335656297-7iu82fqvv69527r36jk2f7c6d0s7i9sg.apps.googleusercontent.com"
             buttonText="Login with Google"
             onSuccess={responseSuccessGoogle}
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
-          />
+          /> */}
+          <button onClick={signInWithGoogle}>Sign in with google</button>
+          <h1>{localStorage.getItem("name")}</h1>
+          <h1>{localStorage.getItem("email")}</h1>
+          <img src={localStorage.getItem("profilePic")} />
           <p className="logRout2">
             {" "}
             Don't have an account?
