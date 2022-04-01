@@ -20,15 +20,15 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 function getProgressValue(issue_date){
     let curr = new Date();
     console.log(curr);
-    console.log(issue_date);
+    // console.log(issue_date);
     let timePassed =  (new Date(issue_date)).getTime()-curr.getTime();
-    console.log(timePassed);
+    // console.log(timePassed);
     
     let msInADay = 1000*60*60*24;
     let toReturn = 100-(timePassed/msInADay)*10;
     if (toReturn<0) {return 0}
     else if (toReturn < 1){return 20}
-    console.log(toReturn);
+    // console.log(toReturn);
     return toReturn;
  }
 
