@@ -23,8 +23,6 @@ var tableStyle=
 
 var headStyle=
 {
-    "margin-top": "3%",
-    "margin-bottom": "3%",
     "border-bottom":"0.6px solid white"
 };
 
@@ -32,21 +30,27 @@ var headStyle=
 
 const Deadline = () => {
         const [title, setTitle] = useState("");
-        const [dueDate,setDueDate] = useState("");
+        const [dueDate,setDueDate] = useState(new Date());
         const [status,setStatus] = useState(false);
         const [tasks, setTasks] = useState([]);
         const [id,setId] = useState(0);
         const[time,setTime] =useState(0);        
         
+        useEffect(()=>
+        {
+            setTime(dueDate.getTime());
+        },[dueDate]);
+
         var submitTask = (e) =>
         {
             var date = dueDate
             var dd = String(date.getDate()).padStart(2, '0');
             var mm = String(date.getMonth() + 1).padStart(2, '0');
             var yyyy = date.getFullYear();
-            var Time = date.getTime();
+           
             date = mm + '/' + dd + '/' + yyyy;
-            setTime(Time);
+            console.log(date)
+            // setTime(Time);
             let task = {
                 "id": id+1,
                 "title": title,
@@ -119,7 +123,6 @@ const Deadline = () => {
                         <th>Assignment Name</th>          
                         <th>Progress Bar</th>
                         <th>Due Date</th>
-                        <th>Status</th>
                         
                     </tr>
                 </thead>
@@ -127,8 +130,8 @@ const Deadline = () => {
                     { tasks.map((task) => (
                         <tr key={ task.id }>
                             <td width={"30%"}>{ task.title }</td>
-                            <td width={"50%"}><CustomizedProgressBars time={task.time}/></td>
-                            <td width={"15%"}>{ task.dueDate }</td>
+                            <td width={"60%"}><CustomizedProgressBars time={task.time}/></td>
+                            <td width={"10%"}>{ task.dueDate }</td>
                             <td width={"5%"}>
                                 <IconButton aria-label="delete" sx={{color:"white"}} size="small">
                                         <DeleteIcon fontSize="small" />
