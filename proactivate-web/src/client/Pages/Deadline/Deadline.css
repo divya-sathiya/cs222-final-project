@@ -11,3 +11,10 @@ h1 {
 {
   margin-bottom: 150;
 }
+
+thead
+{
+  color: white;
+  border-bottom: 1px solid white;
+}
+
