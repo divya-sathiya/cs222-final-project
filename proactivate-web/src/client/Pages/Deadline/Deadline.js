@@ -41,14 +41,6 @@ function onRowSelect(row, isSelected){
 };
 
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
 
 const Deadline = () => {
   const [dueDate,setDueDate] = useState(new Date().toLocaleString() + ""); 
@@ -109,7 +101,7 @@ const Deadline = () => {
     </LocalizationProvider>
 
       <Button variant="outlined"
-      onClick = {() => {infoState(); addTask(title,false,dueDate);}}
+      onClick = {() => {infoState(); addTask(title,false,dueDate); console.log(tasks)}}
       >Submit</Button>
 
       </Box>
@@ -123,6 +115,7 @@ const Deadline = () => {
         </Grid>
         <Grid item md={8} justifyContent="center">
           <Tasks title={title} status={done} dueDate = {dueDate}/>
+          {/* <Tasks deadlines={deadlines}/> */}
         </Grid>
         {/* <Grid item md={1}>
           
@@ -131,13 +124,6 @@ const Deadline = () => {
       </Grid>
     </Box> </>
 
-      /* </div></><BootstrapTable selectRow={selectRowProp}  data={deadlines} striped={true} hover={true}>
-        <TableHeaderColumn dataField="id" isKey={true} dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
-        <TableHeaderColumn dataField="Title" dataAlign="center">Title</TableHeaderColumn>
-        <TableHeaderColumn dataField="Status" dataAlign="center">Status</TableHeaderColumn>
-        <TableHeaderColumn dataField="Deadline" dataAlign="center">Deadline</TableHeaderColumn>
-
-      </BootstrapTable></> */
 
   
    );
