@@ -1,11 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
-
 import Dashboard from "./client/Pages/Dashboard/Dashboard";
 import Navbar from "./client/Components/Navbar.js";
 import Timer from "./client/Pages/Timer/Timer";
 import Schedule from "./client/Pages/Schedule/Schedule";
-
 import MyAccount from "./client/Pages/MyAccount/MyAccount";
 import Landing from "./client/Pages/Landing/Landing";
 import Deadline from "./client/Pages/Deadline/Deadline";

@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -9,21 +8,23 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import CustomizedProgressBars from "../../Components/ProgressBar";
 import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
-import { makeStyles } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { IconButton } from "@mui/material";
 
+//styling
 var tableStyle=
 {
     "color" :"white",
     "width": "100%",
-    "table-layout": "fixed"
+    "table-layout": "fixed",
+    "text-align" : "center"
 };
 
 var headStyle=
 {
-    "border-bottom":"0.6px solid white"
+    "border-bottom":"solid 0.6px white",
+    "fontWeight": "normal"
 };
 
 
@@ -36,11 +37,13 @@ const Deadline = () => {
         const [id,setId] = useState(0);
         const[time,setTime] =useState(0);        
         
+        //making sure that time renders after calculation
         useEffect(()=>
         {
             setTime(dueDate.getTime());
         },[dueDate]);
 
+        //submitTask calculates time, store in tasks array if triggered
         var submitTask = (e) =>
         {
             var date = dueDate
@@ -50,7 +53,6 @@ const Deadline = () => {
            
             date = mm + '/' + dd + '/' + yyyy;
             console.log(date)
-            // setTime(Time);
             let task = {
                 "id": id+1,
                 "title": title,
@@ -59,9 +61,9 @@ const Deadline = () => {
                 "time": time
             }
             setTasks(old => [...old, task]);
-
         }
 
+        //saving the inputed due date to dueDate
         const handleChange = (newValue) => {
             setDueDate(newValue);
         }
@@ -69,7 +71,6 @@ const Deadline = () => {
       
       
         return(
-            
         <>
         <Box md={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
@@ -126,11 +127,11 @@ const Deadline = () => {
                         
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style = {{ "align-items" : "center"}}>
                     { tasks.map((task) => (
                         <tr key={ task.id }>
                             <td width={"30%"}>{ task.title }</td>
-                            <td width={"60%"}><CustomizedProgressBars time={task.time}/></td>
+                            <td width={"80%"} ><CustomizedProgressBars time={task.time}/></td>
                             <td width={"10%"}>{ task.dueDate }</td>
                             <td width={"5%"}>
                                 <IconButton aria-label="delete" sx={{color:"white"}} size="small">

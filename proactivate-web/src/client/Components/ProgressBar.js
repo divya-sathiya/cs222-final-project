@@ -17,6 +17,9 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
+//calculates time and scale it to 0-100, to be outputed as a progress bar
+//@param time
+//@return toReturn is the 0-100 value
 function getProgressValue(time){
     let curr = new Date();
     let timePassed =  time-curr.getTime();
@@ -26,7 +29,6 @@ function getProgressValue(time){
     else if (toReturn < 1){return 20}
     console.log("time" + time);
     console.log("toReturn" + toReturn);
-    // console.log(toReturn);
     return toReturn;
  }
 
