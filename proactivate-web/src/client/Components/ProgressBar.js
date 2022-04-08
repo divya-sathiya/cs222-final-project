@@ -17,27 +17,25 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-function getProgressValue(issue_date){
+function getProgressValue(time){
     let curr = new Date();
-    console.log(curr);
-    // console.log(issue_date);
-    let timePassed =  (new Date(issue_date)).getTime()-curr.getTime();
-    // console.log(timePassed);
-    
+    let timePassed =  time-curr.getTime();
     let msInADay = 1000*60*60*24;
     let toReturn = 100-(timePassed/msInADay)*10;
     if (toReturn<0) {return 0}
     else if (toReturn < 1){return 20}
+    console.log("time" + time);
+    console.log("toReturn" + toReturn);
     // console.log(toReturn);
     return toReturn;
  }
 
 
-export default function CustomizedProgressBars() {
+export default function CustomizedProgressBars({time}) {
     return (
         <Box sx={{ flexGrow: 1 , width: '30%'}}>
         <br />
-        <BorderLinearProgress variant="determinate" value={getProgressValue('Fri Mar 30 2022 14:54:13 GMT-0500 (Central Daylight Time)')} />
+        <BorderLinearProgress variant="determinate" value={getProgressValue(time)} />
         </Box>
         );  
 }
