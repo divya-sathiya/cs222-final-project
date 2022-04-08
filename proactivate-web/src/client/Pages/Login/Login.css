@@ -28,7 +28,7 @@
   font-size: 45px;
   line-height: 50px;
   text-align: center;
-  color: white;
+  color:  #12565a;
   margin-bottom: 6%;
 }
 
@@ -69,4 +69,13 @@
 }
 .logRout_b2:hover {
   color: #11848a;
+}
+
+.google
+{
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
 }
