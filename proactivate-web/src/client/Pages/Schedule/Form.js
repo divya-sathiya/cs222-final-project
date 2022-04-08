@@ -1,6 +1,6 @@
 import React from "react";
 
-const Form = ({ setInputText, todos, setTodos, inputText}) => {
+const Form = ({ setInputText, setInputDay, todos, setTodos, inputText, inputDay}) => {
     const inputTextHandler = (e) => {
         console.log(e.target.value);
         setInputText(e.target.value);
@@ -9,18 +9,30 @@ const Form = ({ setInputText, todos, setTodos, inputText}) => {
         e.preventDefault();
         setTodos([
             ...todos, 
-            { text: inputText, completed: false, id: Math.random() * 1000},
+            { text: inputText, day: inputDay, completed: false, id: Math.random() * 1000},
         ]);
         setInputText('');
+        setInputDay('');
     };
+    const inputDayHandler = (e) => {
+        console.log(e.target.value);
+        setInputDay(e.target.value);
+    };
+
     return (
-        <form>
-            <input value={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
-            <button onClick= {submitTodoHandler} className="todo-button" type="submit">
-                <i className="fas fa-plus-square"></i>
-            </button>
-            {/* <div className="select">
-                <select name="todos" className="filter-todo">
+        <form onSubmit={submitTodoHandler}>
+            <div>
+                <input 
+                    value={inputText} 
+                    onChange= {inputTextHandler}
+                    type="text" 
+                    className="todo-input"
+                    placeholder="Enter task"
+                />
+            </div>
+            
+            <div className="select">
+                <select className="dayName" onChange= {inputDayHandler}>
                     <option value="day">Day</option>
                     <option value="monday">Monday</option>
                     <option value="tuesday">Tuesday</option>
@@ -30,7 +42,22 @@ const Form = ({ setInputText, todos, setTodos, inputText}) => {
                     <option value="saturday">Saturday</option>
                     <option value="sunday">Sunday</option>
                 </select>
-            </div> */}
+            </div>
+
+            <div className="monday">Monday</div>
+            <div className="tuesday">Tuesday</div>
+            <div className="wednesday">Wednesday</div>
+            <div className="thursday">Thursday</div>
+            <div className="friday">Friday</div>
+            <div className="saturday">Saturday</div>
+            <div className="sunday">Sunday</div>
+            <div className="end"></div>
+
+            <button
+                className="todo-button" 
+                type="submit">
+                <i className="fas fa-plus-square"></i>
+            </button>
         </form>
     );
 };

@@ -58,7 +58,7 @@
     align-items: center;
     transition: all 1s ease;
   }
-  .filter-todo {
+  .dayName {
     padding: 1rem;
   }
   .todo li {
@@ -96,7 +96,6 @@
     opacity: 0.5;
   }
   
-  /*CUSTOM SELECTOR */
   select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -106,9 +105,9 @@
     box-shadow: none;
     border: 0 !important;
     background-image: none;
+    font-size: 15px;
   }
   
-  /* Custom Select */
   .select {
     margin: 1rem;
     position: relative;
@@ -131,3 +130,246 @@
     cursor: pointer;
     pointer-events: none;
   }
+
+  ::-webkit-input-placeholder { 
+    color: #12565a;
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+  }
+
+  .monday {
+    position: absolute;
+    height: 37px;
+    left: 258px;
+    top: 450px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    
+    
+    color: #FFFFFF;
+  }
+  .monday.todo{
+    list-style-type: none;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    min-width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .tuesday {
+    position: absolute;
+    height: 37px;
+    left: 887px;
+    top: 450px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    
+    color: #FFFFFF;
+  }
+  .tuesday.todo{
+    list-style-type: none;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    min-width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .wednesday {
+    position: absolute;
+    height: 37px;
+    left: 230px;
+    top: 800px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    
+    color: #FFFFFF;
+  }
+  .wednesday.todo{
+    list-style-type: none;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    min-width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .thursday {
+    position: absolute;
+    height: 37px;
+    left: 887px;
+    top: 800px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    
+    color: #FFFFFF;
+  }
+  .thursday.todo{
+    list-style-type: none;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    min-width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .friday {
+    position: absolute;
+    height: 37px;
+    left: 271px;
+    top: 1200px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    
+    color: #FFFFFF;
+  }
+  .friday.todo{
+    list-style-type: none;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    min-width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .saturday {
+    position: absolute;
+    height: 37px;
+    left: 881px;
+    top: 1200px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    
+    color: #FFFFFF;
+  }
+  .saturday.todo{
+    list-style-type: none;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    min-width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .sunday {
+    position: absolute;
+    height: 37px;
+    left: 594px;
+    top: 1600px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    
+    color: #FFFFFF;
+  }
+  .sunday.todo{
+    list-style-type: none;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    min-width: 30%;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s ease;
+  }
+
+  .end {
+    position: absolute;
+    width: 113px;
+    height: 37px;
+    left: 594px;
+    top: 2000px;
+    
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 37px;
+    /* identical to box height */
+    text-align: center;
+    
+    color: #FFFFFF;
+  }
+

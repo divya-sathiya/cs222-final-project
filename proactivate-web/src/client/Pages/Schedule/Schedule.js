@@ -6,6 +6,7 @@ import TodoList from "./TodoList";
 const Schedule = () => {
     const [inputText, setInputText] = useState("");
     const [todos, setTodos] = useState([]);
+    const [inputDay, setInputDay] = useState("");
 
     useEffect(() => {
         getLocalTodos();
@@ -37,9 +38,11 @@ const Schedule = () => {
             todos = {todos} 
             setTodos={setTodos} 
             inputText= {inputText} 
-            setInputText={setInputText} 
+            setInputText={setInputText}
+            inputDay={inputDay}
+            setInputDay={setInputDay}
           />
-          <TodoList setTodos={setTodos} todos = {todos}/>
+          <TodoList setTodos={setTodos} todos={todos} />
       </div>
     );
 };

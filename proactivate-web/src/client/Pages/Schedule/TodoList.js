@@ -8,10 +8,11 @@ const TodoList = ( { todos, setTodos }) => {
                 {todos.map(todo => (
                     <Todo
                         setTodos={setTodos} 
-                        todos = {todos} 
+                        todos={todos} 
                         key={todo.id}
                         todo={todo}
                         text={todo.text}
+                        day={todo.day}
                     />
                 ))}
             </ul>
