@@ -63,8 +63,8 @@ const Deadline = () => {
                 "time": time
             }
             setTasks(old => [...old, task]);
-            console.log(task)
         }
+        
 
         //saving the inputed due date to dueDate
         const handleChange = (newValue) => {
@@ -123,7 +123,6 @@ const Deadline = () => {
       <DataGrid
         columns={[{ field: "title", headerName: 'Assignment Name', width: 300 }, 
                   { field:"time", headerName:'Progress Bar', width: 750, renderCell: (params) => {
-                      console.log("hereew"+ params.row.time)
                     return(
                         <CustomizedProgressBars time={params.row.time}/>);
                   }
@@ -141,33 +140,7 @@ const Deadline = () => {
     </div> 
     </>
     );
-        {/* <table style={tableStyle}>
-                <thead style={headStyle}>
-                    <tr>
-                        <th>Assignment Name</th>          
-                        <th>Progress Bar</th>
-                        <th>Due Date</th>
-                        
-                    </tr>
-                </thead>
-                <tbody style = {{ "align-items" : "center"}}>
-                    { tasks.map((task) => (
-                        <tr key={ task.id }>
-                            <td width={"30%"}>{ task.title }</td>
-                            <td width={"80%"} ><CustomizedProgressBars time={task.time}/></td>
-                            <td width={"10%"}>{ task.dueDate }</td>
-                            <td width={"5%"}>
-                                <IconButton aria-label="delete" sx={{color:"white"}} size="small">
-                                        <DeleteIcon fontSize="small" />
-                                </IconButton>
-                            </td>
 
-                        </tr>
-                    )) }
-                </tbody>
-            </table> */}
-
-       
         
 };
 

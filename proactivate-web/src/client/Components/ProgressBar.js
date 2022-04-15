@@ -24,20 +24,21 @@ function getProgressValue(time){
     let curr = new Date();
     let timePassed =  time-curr.getTime();
     let msInADay = 1000*60*60*24;
-    let toReturn = 100-(timePassed/msInADay)*10;
+    let toReturn = 100-(timePassed/msInADay);
     if (toReturn<0) {return 0}
-    else if (toReturn < 1){return 20}
-    console.log("time" + time);
-    console.log("toReturn" + toReturn);
+    console.log("time:" + time);
+    console.log("toReturn: " + toReturn);
     return toReturn;
  }
+
+const normalise = (value) => ((value - 0) * 100) / (100);
 
 
 export default function CustomizedProgressBars({time}) {
     return (
-        <Box sx={{ flexGrow: 1 , width: '30%'}}>
+        <Box sx={{ flexGrow: 1 , width: '28%'}}>
         <br />
-        <BorderLinearProgress variant="determinate" value={getProgressValue(time)} />
+        <BorderLinearProgress variant="determinate" value={normalise(getProgressValue(time))} />
         </Box>
         );  
 }
