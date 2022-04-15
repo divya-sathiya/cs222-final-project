@@ -44,15 +44,6 @@ const Form = ({ setInputText, setInputDay, todos, setTodos, inputText, inputDay}
                 </select>
             </div>
 
-            <div className="monday">Monday</div>
-            <div className="tuesday">Tuesday</div>
-            <div className="wednesday">Wednesday</div>
-            <div className="thursday">Thursday</div>
-            <div className="friday">Friday</div>
-            <div className="saturday">Saturday</div>
-            <div className="sunday">Sunday</div>
-            <div className="end"></div>
-
             <button
                 className="todo-button" 
                 type="submit">

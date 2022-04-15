@@ -42,7 +42,7 @@ const Schedule = () => {
             inputDay={inputDay}
             setInputDay={setInputDay}
           />
-          <TodoList setTodos={setTodos} todos={todos} />
+          <TodoList setTodos={setTodos} todos={todos} inputDay={inputDay}/>
       </div>
     );
 };
