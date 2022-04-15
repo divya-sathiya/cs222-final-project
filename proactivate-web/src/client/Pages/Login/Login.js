@@ -9,7 +9,9 @@ import { Link } from "react-router-dom";
 import ModalDialog2 from "../../Components/ModalDialog2";
 import { Divider } from "@mui/material";
 import "./Login.css";
+import { signInWithGoogle } from "../../../server/config/firebase-config";
 import { margin } from "@mui/system";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,18 +84,16 @@ const Login = () => {
           <Button className="button2" type="submit" variant="contained" style={{backgroundColor:'#12565a'}}>
             Login
           </Button>
-         
-          <Divider style ={{color:'#12565a'}}>or</Divider>
+          <p className="paragraph">
+            {" "}
+            ------------------------------ OR -------------------------------
+          </p>
 
-<div className="google">
-          <GoogleLogin
-            clientId="393335656297-7iu82fqvv69527r36jk2f7c6d0s7i9sg.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={responseSuccessGoogle}
-            onFailure={responseErrorGoogle}
-            cookiePolicy={"single_host_origin"}
 
-          />
+          <button class="login-with-google-btn" onClick={signInWithGoogle}>Sign in with google</button>
+          <h1>{localStorage.getItem("name")}</h1>
+          <h1>{localStorage.getItem("email")}</h1>
+          <img src={localStorage.getItem("profilePic")} />
           </div>
           <br></br>
           <p className="logRout2">
