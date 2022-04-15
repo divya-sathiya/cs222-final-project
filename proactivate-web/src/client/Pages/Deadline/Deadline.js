@@ -56,10 +56,6 @@ const Deadline = () => {
             setDueDate(newValue);
         }
 
-        const handleDelete = (id) =>
-        {
-
-        }
 
    
     return(

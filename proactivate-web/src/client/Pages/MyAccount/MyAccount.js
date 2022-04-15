@@ -16,6 +16,8 @@ const MyAccount = () => {
   const [imageUrl, setImageUrl] = useState(null);
   const [text,setText] = useState("edit");
 
+  //toggle the save and edit button
+  //activate read only and deactivate it so the user can update their account information
   const handleEdit = () => 
   {
     if (read == true)
