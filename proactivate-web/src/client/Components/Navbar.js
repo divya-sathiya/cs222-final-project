@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from './logo.svg';
 
 const pages = ["Schedule", "Deadline", "Timer"];
-const settings = ["My Account", "Dashboard", "SignUp", "Login"];
+const settings = ["MyAccount", "Dashboard", "SignUp", "Login"];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
