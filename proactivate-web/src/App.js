@@ -5,10 +5,10 @@ import Navbar from "./client/Components/Navbar.js";
 import Timer from "./client/Pages/Timer/Timer";
 import Schedule from "./client/Pages/Schedule/Schedule";
 import MyAccount from "./client/Pages/MyAccount/MyAccount";
-import Landing from "./client/Pages/Landing/Landing";
 import Deadline from "./client/Pages/Deadline/Deadline";
 import SignUp from "./client/Pages/SignUp/SignUp";
 import Login from "./client/Pages/Login/Login";
+
 
 
 
@@ -47,6 +47,7 @@ const Main = () => {
       <Route path="/Timer" element={<Timer />} />
       <Route path="/Schedule" element={<Schedule />} />
       <Route path="/Deadline" element={<Deadline />} />
+      <Route path="/MyAccount" element={<MyAccount />} />
     </Routes>
   );
 };
