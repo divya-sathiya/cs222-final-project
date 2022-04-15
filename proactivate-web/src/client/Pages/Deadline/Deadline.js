@@ -112,7 +112,7 @@ const Deadline = () => {
     <div style={{ height: 750, width: '100%' }}>
       <DataGrid
         columns={[{ field: "title", headerName: 'Assignment Name', width: 300 }, 
-                  { field:"time", headerName:'Progress Bar', width: 750, renderCell: (params) => {
+                  { field:"time", headerName:'Progress Bar', width: 700, renderCell: (params) => {
                     return(
                         <CustomizedProgressBars time={params.row.time}/>);
                   }
