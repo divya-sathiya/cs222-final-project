@@ -13,21 +13,6 @@ import { DataGrid } from '@mui/x-data-grid';
 
 import { IconButton } from "@mui/material";
 
-//styling
-var tableStyle=
-{
-    "color" :"white",
-    "width": "100%",
-    "table-layout": "fixed",
-    "text-align" : "center"
-};
-
-var headStyle=
-{
-    "border-bottom":"solid 0.6px white",
-    "fontWeight": "normal"
-};
-
 
 
 const Deadline = () => {
@@ -69,6 +54,11 @@ const Deadline = () => {
         //saving the inputed due date to dueDate
         const handleChange = (newValue) => {
             setDueDate(newValue);
+        }
+
+        const handleDelete = (id) =>
+        {
+
         }
 
    
@@ -130,7 +120,7 @@ const Deadline = () => {
                   { field: "dueDate", headerName:'Due Date', width: 150 },
                   { field: 'Delete', width:100, renderCell: () => {
                     return(
-                        <IconButton aria-label="delete" sx={{color:"white"}} size="small">
+                        <IconButton aria-label="delete" sx={{color:"white"}} size="small" >
                             <DeleteIcon fontSize="small" />
                         </IconButton>);
                   }
