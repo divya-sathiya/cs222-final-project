@@ -9,6 +9,7 @@ import CustomizedProgressBars from "../../Components/ProgressBar";
 import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { DataGrid } from '@mui/x-data-grid';
 
 import { IconButton } from "@mui/material";
 
@@ -52,6 +53,7 @@ const Deadline = () => {
             var yyyy = date.getFullYear();
            
             date = mm + '/' + dd + '/' + yyyy;
+            setId(id+1)
             console.log(date)
             let task = {
                 "id": id+1,
@@ -61,6 +63,7 @@ const Deadline = () => {
                 "time": time
             }
             setTasks(old => [...old, task]);
+            console.log(task)
         }
 
         //saving the inputed due date to dueDate
@@ -68,9 +71,8 @@ const Deadline = () => {
             setDueDate(newValue);
         }
 
-      
-      
-        return(
+   
+    return(
         <>
         <Box md={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
@@ -117,8 +119,29 @@ const Deadline = () => {
       </Grid>
     </Box>
        
-
-        <table style={tableStyle}>
+    <div style={{ height: 750, width: '100%' }}>
+      <DataGrid
+        columns={[{ field: "title", headerName: 'Assignment Name', width: 300 }, 
+                  { field:"time", headerName:'Progress Bar', width: 750, renderCell: (params) => {
+                      console.log("hereew"+ params.row.time)
+                    return(
+                        <CustomizedProgressBars time={params.row.time}/>);
+                  }
+                 }, 
+                  { field: "dueDate", headerName:'Due Date', width: 150 },
+                  { field: 'Delete', width:100, renderCell: () => {
+                    return(
+                        <IconButton aria-label="delete" sx={{color:"white"}} size="small">
+                            <DeleteIcon fontSize="small" />
+                        </IconButton>);
+                  }
+                }]}
+        rows={tasks}
+      />
+    </div> 
+    </>
+    );
+        {/* <table style={tableStyle}>
                 <thead style={headStyle}>
                     <tr>
                         <th>Assignment Name</th>          
@@ -142,10 +165,10 @@ const Deadline = () => {
                         </tr>
                     )) }
                 </tbody>
-            </table>
+            </table> */}
 
-        </>
-        );
+       
+        
 };
 
 export default Deadline;
