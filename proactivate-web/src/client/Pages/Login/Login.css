@@ -28,7 +28,7 @@
   font-size: 45px;
   line-height: 50px;
   text-align: center;
-  color: white;
+  color:  #12565a;
   margin-bottom: 6%;
 }
 
@@ -104,4 +104,12 @@
   background-color: #ebebeb;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
   cursor: not-allowed;
+
+.google
+{
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
 }

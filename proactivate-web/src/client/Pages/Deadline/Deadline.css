@@ -1,3 +1,20 @@
 h1 {
   color: aliceblue;
 }
+
+.datePick
+{
+  margin-top: 150;
+}
+
+.inputs
+{
+  margin-bottom: 150;
+}
+
+thead
+{
+  color: white;
+  border-bottom: 1px solid white;
+}
+

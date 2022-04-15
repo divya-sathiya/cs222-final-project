@@ -90,7 +90,8 @@ const SignUp = () => {
         />
 
         <div>
-          <Button onClick={register} className="button1" type="submit" variant="contained">
+
+          <Button onClick={register} className="button1" type="submit" variant="contained" style={{backgroundColor:'#12565a'}} >
             Sign Up
           </Button>
 

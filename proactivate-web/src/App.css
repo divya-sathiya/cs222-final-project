@@ -1,8 +1,12 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   background-color: #12565a;
 }
 
+:root
+{
+  --bs-body-bg: #12565a;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

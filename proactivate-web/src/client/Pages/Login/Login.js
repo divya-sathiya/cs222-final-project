@@ -7,8 +7,11 @@ import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import ModalDialog2 from "../../Components/ModalDialog2";
+import { Divider } from "@mui/material";
 import "./Login.css";
 import { signInWithGoogle } from "../../../server/config/firebase-config";
+import { margin } from "@mui/system";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "white",
     padding: theme.spacing(10),
     "& .MuiTextField-root": {
       margin: theme.spacing(2),
@@ -77,24 +81,21 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <div>
-          <Button className="button2" type="submit" variant="contained">
+          <Button className="button2" type="submit" variant="contained" style={{backgroundColor:'#12565a'}}>
             Login
           </Button>
           <p className="paragraph">
             {" "}
             ------------------------------ OR -------------------------------
           </p>
-          {/* <GoogleLogin
-            clientId="393335656297-7iu82fqvv69527r36jk2f7c6d0s7i9sg.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={responseSuccessGoogle}
-            onFailure={responseErrorGoogle}
-            cookiePolicy={"single_host_origin"}
-          /> */}
+
+
           <button class="login-with-google-btn" onClick={signInWithGoogle}>Sign in with google</button>
           <h1>{localStorage.getItem("name")}</h1>
           <h1>{localStorage.getItem("email")}</h1>
           <img src={localStorage.getItem("profilePic")} />
+          </div>
+          <br></br>
           <p className="logRout2">
             {" "}
             Don't have an account?

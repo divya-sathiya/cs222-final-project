@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import {render} from 'react-dom';
 import Box from '@mui/material/Box';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
 
-
-
-
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 16,
-  borderRadius: 5,
+  borderRadius: 4,
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
   },
@@ -19,33 +17,27 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedProgressBars() {
-    const [progress, setProgress] = React.useState(0);
-
-    React.useEffect(() => {
-        const timer = setInterval(() => {
-          setProgress((oldProgress) => {
-            if (oldProgress === 100) {
-              return 0;
-            }
-            const diff = Math.random() * 10;
-            return Math.min(oldProgress + diff, 100);
-          });
-        }, 500);
-    
-        return () => {
-          clearInterval(timer);
-        };
-      }, []);
+//calculates time and scale it to 0-100, to be outputed as a progress bar
+//@param time
+//@return toReturn is the 0-100 value
+function getProgressValue(time){
+    let curr = new Date();
+    let timePassed =  time-curr.getTime();
+    let msInADay = 1000*60*60*24;
+    let toReturn = 100-(timePassed/msInADay)*10;
+    if (toReturn<0) {return 0}
+    else if (toReturn < 1){return 20}
+    console.log("time" + time);
+    console.log("toReturn" + toReturn);
+    return toReturn;
+ }
 
 
-
-
-  return (
-    <Box sx={{ flexGrow: 1 , width: '30%'}}>
-
-      <br />
-      <BorderLinearProgress variant="determinate" value={progress} />
-    </Box>
-  );
+export default function CustomizedProgressBars({time}) {
+    return (
+        <Box sx={{ flexGrow: 1 , width: '30%'}}>
+        <br />
+        <BorderLinearProgress variant="determinate" value={getProgressValue(time)} />
+        </Box>
+        );  
 }
