@@ -119,7 +119,7 @@
     cursor: pointer;
     width: 12rem;
   }
-  /* Arrow */
+
   .select::after {
     content: "\25BC";
     position: absolute;
@@ -153,4 +153,8 @@
     padding: 20px;
     font-size: 30px;
     color: #024347;
+}
+
+.center {
+    text-align: center;
 }

@@ -28,6 +28,7 @@ const Form = ({ setInputText, setInputDay, todos, setTodos, inputText, inputDay}
                     type="text" 
                     className="todo-input"
                     placeholder="Enter task"
+                    maxlength="15"
                 />
             </div>
             
