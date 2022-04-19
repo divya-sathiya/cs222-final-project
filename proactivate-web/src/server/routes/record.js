@@ -11,26 +11,28 @@ const dbo = require("../db/conn");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
-// This section will help you get a list of all the records.
-recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("sample_analytics");
-  db_connect
-    .collection("accounts")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err;
-      res.json(result);
+module.exports = recordRoutes;
+
+//Adding to tasks in the mongodb
+recordRoutes.route("/tasks/add_task").post(function (req, res) {
+  const dbConnect = dbo.getDb();
+  
+  const matchDocument = {
+    user_auth_token: req.body.token,
+    tasks: req.body.todos
+  };
+  dbConnect
+    .collection("tasks")
+    .insertOne(matchDocument, function (err, result) {
+      if (err) {
+        res.status(400).send("Error inserting task!");
+      } else {
+        console.log(`Added a new task with id ${result.insertedId}`);
+        res.status(204).send();
+      }
     });
 });
 
-// This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
-  db_connect.collection("accounts").findOne(myquery, function (err, result) {
-    if (err) throw err;
-    res.json(result);
-  });
-});
 
-module.exports = recordRoutes;
+
+

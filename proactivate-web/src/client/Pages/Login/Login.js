@@ -16,6 +16,7 @@ import { margin } from "@mui/system";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  getIdToken
 } from "firebase/auth";
 
 
@@ -60,15 +61,17 @@ const Login = () => {
   //Sign in with email and password
   const signIn = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
+      const currentUser = await signInWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
+      var user_token = await currentUser.user.getIdToken();
+      localStorage.setItem("current_user_authToken", user_token);
       alert("Successfully logged in!");
     } catch (error) {
       alert(error.message);
-    }
+    } 
   };
 
 

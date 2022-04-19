@@ -47,12 +47,13 @@ const SignUp = () => {
   //Sign-up using email and password
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const user_info = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
       alert("Successfully registered!");
+      localStorage.setItem("current_user_authToken", user_info.user.getIdToken);
     } catch (error) {
       alert(error.message);
     }
