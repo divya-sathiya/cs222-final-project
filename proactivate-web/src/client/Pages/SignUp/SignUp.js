@@ -53,9 +53,9 @@ const SignUp = () => {
         registerEmail,
         registerPassword
       );
-      console.log(user);
+      alert("Successfully registered!");
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -91,7 +91,7 @@ const SignUp = () => {
 
         <div>
 
-          <Button onClick={register} className="button1" type="submit" variant="contained" style={{backgroundColor:'#12565a'}} >
+          <Button onClick={register} className="button1" variant="contained" style={{backgroundColor:'#12565a'}} >
             Sign Up
           </Button>
 
