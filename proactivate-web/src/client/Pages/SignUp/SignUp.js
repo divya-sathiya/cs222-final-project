@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
+  //const [username, setUsername] = useState("");
   const [user, setUser] = useState({});
 
   onAuthStateChanged(auth, (currentUser) => {
@@ -63,13 +63,13 @@ const SignUp = () => {
     <div className="SignUp">
       <form className={classes.root}>
         <h className="title">PROACTIVATE.</h>
-         <TextField
+         {/* <TextField
           label="Username"
           variant="outlined"
           required
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        /> 
+        />  */}
         <TextField
           label="Email"
           variant="outlined"

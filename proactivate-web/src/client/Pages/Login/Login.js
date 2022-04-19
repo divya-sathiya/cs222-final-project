@@ -34,8 +34,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  //const [userName, setUserName] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  //const [password, setPassword] = useState("");
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -65,20 +67,28 @@ const Login = () => {
     <div className="Login">
       <form className={classes.root}>
         <h className="title2">Welcome Back</h>
-        <TextField
+        {/* <TextField
           label="Username"
           variant="outlined"
           required
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
+        /> */}
+        <TextField
+          label="Email"
+          variant="outlined"
+          type="email"
+          required
+          value={registerEmail}
+          onChange={(e) => setRegisterEmail(e.target.value)}
         />
         <TextField
           label="Password"
           variant="outlined"
           type="password"
           required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={registerPassword}
+          onChange={(e) => setRegisterPassword(e.target.value)}
         />
         <div>
           <Button className="button2" type="submit" variant="contained" style={{backgroundColor:'#12565a'}}>
