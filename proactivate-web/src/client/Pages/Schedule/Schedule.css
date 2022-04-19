@@ -58,7 +58,7 @@
     align-items: center;
     transition: all 1s ease;
   }
-  .filter-todo {
+  .dayName {
     padding: 1rem;
   }
   .todo li {
@@ -96,7 +96,6 @@
     opacity: 0.5;
   }
   
-  /*CUSTOM SELECTOR */
   select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -106,9 +105,9 @@
     box-shadow: none;
     border: 0 !important;
     background-image: none;
+    font-size: 15px;
   }
   
-  /* Custom Select */
   .select {
     margin: 1rem;
     position: relative;
@@ -120,7 +119,7 @@
     cursor: pointer;
     width: 12rem;
   }
-  /* Arrow */
+
   .select::after {
     content: "\25BC";
     position: absolute;
@@ -131,3 +130,31 @@
     cursor: pointer;
     pointer-events: none;
   }
+
+  ::-webkit-input-placeholder { 
+    color: #12565a;
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+  }
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    row-gap: 10px;
+    column-gap: 40px;
+}
+  
+.flex-container > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+    color: #024347;
+}
+
+.center {
+    text-align: center;
+}

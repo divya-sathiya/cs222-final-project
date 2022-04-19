@@ -9,23 +9,9 @@ import CustomizedProgressBars from "../../Components/ProgressBar";
 import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { DataGrid } from '@mui/x-data-grid';
 
 import { IconButton } from "@mui/material";
-
-//styling
-var tableStyle=
-{
-    "color" :"white",
-    "width": "100%",
-    "table-layout": "fixed",
-    "text-align" : "center"
-};
-
-var headStyle=
-{
-    "border-bottom":"solid 0.6px white",
-    "fontWeight": "normal"
-};
 
 
 
@@ -52,6 +38,7 @@ const Deadline = () => {
             var yyyy = date.getFullYear();
            
             date = mm + '/' + dd + '/' + yyyy;
+            setId(id+1)
             console.log(date)
             let task = {
                 "id": id+1,
@@ -62,15 +49,16 @@ const Deadline = () => {
             }
             setTasks(old => [...old, task]);
         }
+        
 
         //saving the inputed due date to dueDate
         const handleChange = (newValue) => {
             setDueDate(newValue);
         }
 
-      
-      
-        return(
+
+   
+    return(
         <>
         <Box md={{ flexGrow: 1 }}>
       <Grid container spacing={1}>
@@ -117,35 +105,29 @@ const Deadline = () => {
       </Grid>
     </Box>
        
+    <div style={{ height: 750, width: '100%' }}>
+      <DataGrid
+        columns={[{ field: "title", headerName: 'Assignment Name', width: 300 }, 
+                  { field:"time", headerName:'Progress Bar', width: 700, renderCell: (params) => {
+                    return(
+                        <CustomizedProgressBars time={params.row.time}/>);
+                  }
+                 }, 
+                  { field: "dueDate", headerName:'Due Date', width: 150 },
+                  { field: 'Delete', width:100, renderCell: () => {
+                    return(
+                        <IconButton aria-label="delete" sx={{color:"white"}} size="small" >
+                            <DeleteIcon fontSize="small" />
+                        </IconButton>);
+                  }
+                }]}
+        rows={tasks}
+      />
+    </div> 
+    </>
+    );
 
-        <table style={tableStyle}>
-                <thead style={headStyle}>
-                    <tr>
-                        <th>Assignment Name</th>          
-                        <th>Progress Bar</th>
-                        <th>Due Date</th>
-                        
-                    </tr>
-                </thead>
-                <tbody style = {{ "align-items" : "center"}}>
-                    { tasks.map((task) => (
-                        <tr key={ task.id }>
-                            <td width={"30%"}>{ task.title }</td>
-                            <td width={"80%"} ><CustomizedProgressBars time={task.time}/></td>
-                            <td width={"10%"}>{ task.dueDate }</td>
-                            <td width={"5%"}>
-                                <IconButton aria-label="delete" sx={{color:"white"}} size="small">
-                                        <DeleteIcon fontSize="small" />
-                                </IconButton>
-                            </td>
-
-                        </tr>
-                    )) }
-                </tbody>
-            </table>
-
-        </>
-        );
+        
 };
 
 export default Deadline;
