@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { useState } from "react";
-//import ModalDialog from "../../Components/ModalDialog";
+import ModalDialog from "../../Components/ModalDialog";
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import "./SignUp.css";
@@ -36,16 +36,15 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
   const classes = useStyles();
-  //const [username, setUsername] = useState("");
   const [user, setUser] = useState({});
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
 
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-
+  //Sign-up using email and password
   const register = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
@@ -63,13 +62,6 @@ const SignUp = () => {
     <div className="SignUp">
       <form className={classes.root}>
         <h className="title">PROACTIVATE.</h>
-         {/* <TextField
-          label="Username"
-          variant="outlined"
-          required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />  */}
         <TextField
           label="Email"
           variant="outlined"
@@ -78,8 +70,6 @@ const SignUp = () => {
           value={registerEmail}
           onChange={(e) => setRegisterEmail(e.target.value)}
         />
-
-
         <TextField
           label="Password"
           variant="outlined"
@@ -88,14 +78,10 @@ const SignUp = () => {
           value={registerPassword}
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
-
         <div>
-
           <Button onClick={register} className="button1" variant="contained" style={{backgroundColor:'#12565a'}} >
             Sign Up
           </Button>
-
-
           <p className="logRout">
             {" "}
             Already have an account?

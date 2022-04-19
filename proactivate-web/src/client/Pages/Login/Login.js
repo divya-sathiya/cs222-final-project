@@ -40,16 +40,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  //const [userName, setUserName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  //const [password, setPassword] = useState("");
   const [user, setUser] = useState({});
+
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
 
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -57,6 +57,7 @@ const Login = () => {
     setOpen(false);
   };
 
+  //Sign in with email and password
   const signIn = async () => {
     try {
       const user = await signInWithEmailAndPassword(
@@ -71,7 +72,7 @@ const Login = () => {
   };
 
 
-  /* for google login */
+  // For google login
   const responseSuccessGoogle = (response) => {
     console.log(response);
     axios({
@@ -91,13 +92,6 @@ const Login = () => {
     <div className="Login">
       <form className={classes.root}>
         <h className="title2">Welcome Back</h>
-        {/* <TextField
-          label="Username"
-          variant="outlined"
-          required
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-        /> */}
         <TextField
           label="Email"
           variant="outlined"
