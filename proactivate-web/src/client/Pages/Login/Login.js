@@ -10,7 +10,13 @@ import ModalDialog2 from "../../Components/ModalDialog2";
 import { Divider } from "@mui/material";
 import "./Login.css";
 import { signInWithGoogle } from "../../../server/config/firebase-config";
+import { auth } from "../../../server/config/firebase-config";
 import { margin } from "@mui/system";
+
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +44,10 @@ const Login = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   //const [password, setPassword] = useState("");
+  const [user, setUser] = useState({});
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -46,6 +56,20 @@ const Login = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const signIn = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      alert("Successfully logged in!");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
 
   /* for google login */
   const responseSuccessGoogle = (response) => {
@@ -91,7 +115,7 @@ const Login = () => {
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
         <div>
-          <Button className="button2" type="submit" variant="contained" style={{backgroundColor:'#12565a'}}>
+          <Button className="button2" onClick={signIn} variant="contained" style={{backgroundColor:'#12565a'}}>
             Login
           </Button>
           <p className="paragraph">
