@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Schedule.css";
 import Form from "./Form";
 import TodoList from "./TodoList";
+import axios from 'axios';
 
 const Schedule = () => {
     const [inputText, setInputText] = useState("");
@@ -18,6 +19,8 @@ const Schedule = () => {
 
     const saveLocalTodos = () => {
         localStorage.setItem("todos", JSON.stringify(todos));
+        const res = axios.post("http://localhost:5000/tasks/add_task", {token: localStorage.getItem("current_user_authToken"), todos: localStorage.getItem("todos")});
+        console.log(res.data);
     };
 
     const getLocalTodos = () => {

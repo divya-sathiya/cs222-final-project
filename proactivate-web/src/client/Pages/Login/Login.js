@@ -10,7 +10,14 @@ import ModalDialog2 from "../../Components/ModalDialog2";
 import { Divider } from "@mui/material";
 import "./Login.css";
 import { signInWithGoogle } from "../../../server/config/firebase-config";
+import { auth } from "../../../server/config/firebase-config";
 import { margin } from "@mui/system";
+
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  getIdToken
+} from "firebase/auth";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,10 +41,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [user, setUser] = useState({});
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
+  });
 
   const [open, setOpen] = useState(false);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -45,7 +58,24 @@ const Login = () => {
     setOpen(false);
   };
 
-  /* for google login */
+  //Sign in with email and password
+  const signIn = async () => {
+    try {
+      const currentUser = await signInWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      var user_token = await currentUser.user.getIdToken();
+      localStorage.setItem("current_user_authToken", user_token);
+      alert("Successfully logged in!");
+    } catch (error) {
+      alert(error.message);
+    } 
+  };
+
+
+  // For google login
   const responseSuccessGoogle = (response) => {
     console.log(response);
     axios({
@@ -66,22 +96,23 @@ const Login = () => {
       <form className={classes.root}>
         <h className="title2">Welcome Back</h>
         <TextField
-          label="Username"
+          label="Email"
           variant="outlined"
+          type="email"
           required
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          value={registerEmail}
+          onChange={(e) => setRegisterEmail(e.target.value)}
         />
         <TextField
           label="Password"
           variant="outlined"
           type="password"
           required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={registerPassword}
+          onChange={(e) => setRegisterPassword(e.target.value)}
         />
         <div>
-          <Button className="button2" type="submit" variant="contained" style={{backgroundColor:'#12565a'}}>
+          <Button className="button2" onClick={signIn} variant="contained" style={{backgroundColor:'#12565a'}}>
             Login
           </Button>
           <p className="paragraph">
