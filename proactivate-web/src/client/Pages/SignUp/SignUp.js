@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ModalDialog from "../../Components/ModalDialog";
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
@@ -13,6 +13,7 @@ import {
 
 import { auth } from "../../../server/config/firebase-config";
 import { Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 //Pop up the sign up component when clicked, close otherwise
 const useStyles = makeStyles((theme) => ({
@@ -39,10 +40,14 @@ const SignUp = () => {
   const [user, setUser] = useState({});
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [success,setSuccess] = useState(false);
+  const [redirect, setredirect] = useState(null)
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
   });
+},[]);
 
   //Sign-up using email and password
   const register = async () => {
@@ -52,13 +57,18 @@ const SignUp = () => {
         registerEmail,
         registerPassword
       );
-      alert("Successfully registered!");
+      setSuccess(true);
       localStorage.setItem("current_user_authToken", user_info.user.getIdToken);
     } catch (error) {
       alert(error.message);
     }
   };
 
+  if (success === true) {
+    return <Navigate to="/Dashboard" />;
+  }
+  
+ 
   return (
     <div className="SignUp">
       <form className={classes.root}>
