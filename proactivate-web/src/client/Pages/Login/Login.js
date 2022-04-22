@@ -12,6 +12,7 @@ import "./Login.css";
 import { signInWithGoogle } from "../../../server/config/firebase-config";
 import { auth } from "../../../server/config/firebase-config";
 import { margin } from "@mui/system";
+import { Navigate } from 'react-router-dom';
 
 import {
   signInWithEmailAndPassword,
@@ -44,6 +45,7 @@ const Login = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [user, setUser] = useState({});
+  const [success,setSuccess] = useState(false);
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
@@ -68,13 +70,14 @@ const Login = () => {
       );
       var user_token = await currentUser.user.getIdToken();
       localStorage.setItem("current_user_authToken", user_token);
-      alert("Successfully logged in!");
+      setSuccess(true);
     } catch (error) {
-      alert(error.message);
+      setSuccess(false)
+      console.log(success)
     } 
   };
 
-
+  
   // For google login
   const responseSuccessGoogle = (response) => {
     console.log(response);
@@ -90,6 +93,10 @@ const Login = () => {
   const responseErrorGoogle = (response) => {
     console.log(response);
   };
+  
+  if (success === true) {
+    return <Navigate to="/Dashboard" />;
+  }
 
   return (
     <div className="Login">
@@ -102,6 +109,7 @@ const Login = () => {
           required
           value={registerEmail}
           onChange={(e) => setRegisterEmail(e.target.value)}
+          error = {success}
         />
         <TextField
           label="Password"
@@ -110,6 +118,7 @@ const Login = () => {
           required
           value={registerPassword}
           onChange={(e) => setRegisterPassword(e.target.value)}
+          error = {success}
         />
         <div>
           <Button className="button2" onClick={signIn} variant="contained" style={{backgroundColor:'#12565a'}}>
