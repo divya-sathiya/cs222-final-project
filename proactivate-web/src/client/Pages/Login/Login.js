@@ -72,8 +72,9 @@ const Login = () => {
       localStorage.setItem("current_user_authToken", user_token);
       setSuccess(true);
     } catch (error) {
-      setSuccess(false)
-      console.log(success)
+      setSuccess(false);
+      alert(error.message);
+      console.log(success);
     } 
   };
 
