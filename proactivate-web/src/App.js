@@ -33,10 +33,10 @@ function App() {
       <Route path="/Login" element={<Login />} />
       <Route path="/SignUp" element={<SignUp />} />
       </Routes>
-     
+     <div>
       <Navbar />
-
       <Main />
+      </div>
     </div>
 
 
