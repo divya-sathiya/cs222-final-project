@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "./client/Pages/Dashboard/Dashboard";
-import Navbar from "./client/Components/Navbar.js";
+import Navbar from "./client/Components/Navbar2.js";
 import Timer from "./client/Pages/Timer/Timer";
 import Schedule from "./client/Pages/Schedule/Schedule";
 import MyAccount from "./client/Pages/MyAccount/MyAccount";
 import Deadline from "./client/Pages/Deadline/Deadline";
 import SignUp from "./client/Pages/SignUp/SignUp";
 import Login from "./client/Pages/Login/Login";
-
+import { Navigate, Switch,BrowserRouter } from 'react-router-dom';
 
 
 
@@ -27,9 +27,15 @@ import "./App.css";
 function App() {
   return (
     <div>
-      <div className = "navbar">
+     
+      <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/SignUp" element={<SignUp />} />
+      </Routes>
+     
       <Navbar />
-      </div>
+
       <Main />
     </div>
 
@@ -40,9 +46,6 @@ function App() {
 const Main = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/SignUp" element={<SignUp />} />
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/Timer" element={<Timer />} />
       <Route path="/Schedule" element={<Schedule />} />

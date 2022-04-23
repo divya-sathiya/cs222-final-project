@@ -40,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const Login = () => {
   const classes = useStyles();
   const [registerEmail, setRegisterEmail] = useState("");
@@ -68,9 +70,10 @@ const Login = () => {
         registerEmail,
         registerPassword
       );
+      setSuccess(true)
       var user_token = await currentUser.user.getIdToken();
       localStorage.setItem("current_user_authToken", user_token);
-      setSuccess(true);
+      localStorage.setItem("loggedIn", true);
     } catch (error) {
       setSuccess(false)
       console.log(success)
@@ -98,6 +101,7 @@ const Login = () => {
     return <Navigate to="/Dashboard" />;
   }
 
+  
   return (
     <div className="Login">
       <form className={classes.root}>
@@ -109,7 +113,7 @@ const Login = () => {
           required
           value={registerEmail}
           onChange={(e) => setRegisterEmail(e.target.value)}
-          error = {success}
+          error = {false}
         />
         <TextField
           label="Password"
@@ -118,10 +122,11 @@ const Login = () => {
           required
           value={registerPassword}
           onChange={(e) => setRegisterPassword(e.target.value)}
-          error = {success}
+          error =  {false}
         />
         <div>
-          <Button className="button2" onClick={signIn} variant="contained" style={{backgroundColor:'#12565a'}}>
+          <Button className="button2" onClick={signIn} variant="
+          " style={{backgroundColor:'#12565a'}}>
             Login
           </Button>
           <p className="paragraph">

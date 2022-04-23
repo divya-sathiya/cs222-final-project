@@ -14,6 +14,7 @@ import Image from "mui-image";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Button from "@mui/material/Button";
 
 const label = { inputProps: { "aria-label": "demo" } };
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,9 +25,14 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 const Dashboard = () => {
+
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location.href = '/login';
+    }
+
   return (
 <>
-    
 <Box sx={{ flexGrow: 1 }} >
       <Grid container  justify="center" spacing={2} columns={16}>
         <Grid  justify="center" item xs={8}>
@@ -115,6 +121,9 @@ const Dashboard = () => {
                   </Grid>
      
     </Box>
+    <Button variant="outlined" onClick={()=>{handleLogout()}}>
+        Logout
+    </Button> 
     </>
   );
 };

@@ -15,13 +15,21 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from './logo.svg';
+// import { getAuth } from "firebase/auth";
+
 
 const pages = ["Schedule", "Deadline", "Timer"];
-const settings = ["MyAccount", "Dashboard", "SignUp", "Login"];
+ let settings =  ["MyAccount", "Dashboard", "SignUp", "Login"];
+
+if(localStorage.getItem('loggedIn') !== null){
+  settings = ["MyAccount", "Dashboard", "Logout"];
+}
+  
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -38,6 +46,27 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  // const handleNavigation = (route) =>
+  // {
+  //   if(!user && route!="SignUp")
+  //   {
+  //     return "/SignUp";
+  //   }
+  //   else if(!user && route!="SignUp")
+  //   {
+  //     return "/Login";
+  //   }
+  //   else if(user && route!="Logout")
+  //   {
+  //     return "/" + route;
+  //   }
+  //   else
+  //   {
+  //     return "/Logout";
+  //   }
+  // };
+
+  
   return (
     <AppBar style={{ background: 'white' }} position="static">
       <Container maxWidth="xl">
@@ -48,9 +77,6 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           ></Typography>
-
-
-          
               <Logo height={50} />
           
 
@@ -85,12 +111,11 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
+                  <Typography textAlign="center"> 
                     <Link
                       style={{ textDecoration: "none", color: "black" }}
-                      to={`/${page}`}
-                    >
-                      {page}
+                      to={`/${page}`}>
+                     {page}
                     </Link>
                   </Typography>
                 </MenuItem>
@@ -107,7 +132,7 @@ const ResponsiveAppBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={handleCloseNavMenu} //if current user exist redirect to 
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 <Link
@@ -116,7 +141,7 @@ const ResponsiveAppBar = () => {
                 >
                   {page}
                 </Link>
-              </Button>
+              </Button> 
             ))}
           </Box>
 
