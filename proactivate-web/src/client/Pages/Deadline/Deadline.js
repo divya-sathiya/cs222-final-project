@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DataGrid } from '@mui/x-data-grid';
+import axios from 'axios';
 
 import { IconButton } from "@mui/material";
 
@@ -47,7 +48,18 @@ const Deadline = () => {
                 "status": status,
                 "time": time
             }
+            let body = {
+              "token": localStorage.getItem("current_user_authToken"),
+              "deadline_id": id+1,
+              "name": title,
+              "date": date,
+              "complete": status,
+              "time": time
+            }
             setTasks(old => [...old, task]);
+            console.log("I AM HERE");
+            const res = axios.post("http://localhost:5000/deadline/add_stats", body);
+            console.log("res:"+res.data);
         }
         
 
