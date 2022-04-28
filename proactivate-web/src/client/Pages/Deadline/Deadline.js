@@ -10,9 +10,11 @@ import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DataGrid } from '@mui/x-data-grid';
+import axios from 'axios';
 
 import { IconButton } from "@mui/material";
 
+import {getAuth} from "firebase/auth";
 
 
 const Deadline = () => {
@@ -21,13 +23,36 @@ const Deadline = () => {
         const [status,setStatus] = useState(false);
         const [tasks, setTasks] = useState([]);
         const [id,setId] = useState(0);
-        const[time,setTime] =useState(0);        
-        
-        //making sure that time renders after calculation
+        const[time,setTime] =useState(0);     
+        const [userToken,setUserToken] = useState("")
+      
         useEffect(()=>
         {
             setTime(dueDate.getTime());
         },[dueDate]);
+
+       
+        useEffect(()=>
+        {
+          console.log("here")
+          const fetchData = async () => {
+            try{
+              const {data:res} = await axios.get('http://localhost:5000/deadline/get_stats',
+              { token: localStorage.getItem("current_user_authToken")}
+          //     {headers: 
+          //         {'Authorization':  `Bearer ${auth.getIdToken(true)}`}
+          // }
+            );
+              setTasks(JSON.stringify(res))
+              console.log("task"+ JSON.stringify(res))
+            }
+            catch(e){
+                  console.log("error")
+            }
+          }
+          fetchData();
+        },[]);
+
 
         //submitTask calculates time, store in tasks array if triggered
         var submitTask = (e) =>
@@ -47,7 +72,28 @@ const Deadline = () => {
                 "status": status,
                 "time": time
             }
+            let body = {
+              "token": localStorage.getItem("current_user_authToken"),
+              "deadline_id": id+1,
+              "name": title,
+              "date": date,
+              "complete": status,
+              "time": time
+            }
             setTasks(old => [...old, task]);
+            console.log("I AM HERE");
+            const res = axios.post("http://localhost:5000/deadline/add_stats", body
+            //  {
+            //   deadline_id: id+1,
+            //   name: title,
+            //   date: date,
+            //   complete: status,
+            //   time: time},
+            //   {headers: 
+            //       {'Authorization':  `Bearer ${auth.getIdToken(true)}`}
+            //   }
+            );
+            
         }
         
 
@@ -106,7 +152,9 @@ const Deadline = () => {
     </Box>
        
     <div style={{ height: 750, width: '100%' }}>
+      
       <DataGrid
+       
         columns={[{ field: "title", headerName: 'Assignment Name', width: 300 }, 
                   { field:"time", headerName:'Progress Bar', width: 700, renderCell: (params) => {
                     return(
@@ -122,6 +170,8 @@ const Deadline = () => {
                   }
                 }]}
         rows={tasks}
+        getRowId={(row)=>row.id}
+        
       />
     </div> 
     </>
