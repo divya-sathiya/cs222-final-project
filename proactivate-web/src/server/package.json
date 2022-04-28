@@ -17,7 +17,7 @@
     "express-session": "^1.17.2",
     "firebase": "^9.6.10",
     "google-auth-library": "^7.14.0",
-    "mongodb": "^4.4.1",
+    "mongodb": "^4.5.0",
     "mongoose": "^6.2.4",
     "mongoose-findorcreate": "^3.0.0",
     "node": "^17.7.2",

@@ -26,8 +26,8 @@ function getProgressValue(time){
     let msInADay = 1000*60*60*24;
     let toReturn = 100-(timePassed/msInADay);
     if (toReturn<0) {return 0}
-    console.log("time:" + time);
-    console.log("toReturn: " + toReturn);
+    //console.log("time:" + time);
+    //console.log("toReturn: " + toReturn);
     return toReturn;
  }
 

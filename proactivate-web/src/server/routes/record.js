@@ -15,6 +15,8 @@ module.exports = recordRoutes;
 
 /* TASKS */
 
+
+
 //TASK POST ->CREATE
 recordRoutes.route("/tasks/add_task").post(function (req, res) {
   const dbConnect = dbo.getDb();
@@ -116,9 +118,13 @@ recordRoutes.route("/deadline/add_stats").post(function (req, res) {
 
 //DEADLINE GET -> READ
 recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
+  //const bearerHeader = req.headers['Authorization'];
+  // if (bearerHeader){
+  //   const bearer = bearerHeader.split(' ');
+  //   const idToken = bearer[1];
+  //   const dbConnect = dbo.getDb();
   var tokenId = req.body.token;
-  const dbConnect = dbo.getDb();
-  dbConnect
+    dbConnect
     .collection("deadlines")
     .find({user_auth_token: tokenId})
     .toArray(function (err, result) {
@@ -126,8 +132,13 @@ recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
         res.status(400).send("Error fetching user tasks!");
      } else {
         res.json(result);
+        console.log(JSON.stringify(result))
       }
     });
+  
+  // var tokenId = req.body.token;
+ 
+  
 });
 
 
