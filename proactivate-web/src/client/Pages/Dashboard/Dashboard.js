@@ -76,7 +76,7 @@ const Dashboard = () => {
                   <Stack direction="row" spacing={2}  style={{paddingBottom: 50}}  >
                       <Avatar 
                       sx={{ width: 200, height: 200 }}
-                      alt="/broken-image.jpg"
+                      alt="Remy Sharp"
                       src={profPic}
                     />
                   </Stack>
