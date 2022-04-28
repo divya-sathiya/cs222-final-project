@@ -15,6 +15,13 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Button from "@mui/material/Button";
+import { useState, useEffect } from "react";
+import { auth } from "../../../server/config/firebase-config";
+import {
+    onAuthStateChanged,
+    getAuth
+  } from "firebase/auth";
+
 
 const label = { inputProps: { "aria-label": "demo" } };
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,12 +31,41 @@ const Item = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
-const Dashboard = () => {
 
+
+const Dashboard = () => {
+    const [profPic,setProfPic] = useState("/broken-image.jpg")
+    const [user,setUser] = useState([])
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+      });
+
+   
     const handleLogout = () => {
         localStorage.clear();
         window.location.href = '/login';
     }
+
+    useEffect(() => {
+        console.log("user: " + JSON.stringify(user))
+        const user_json = JSON.stringify(user);
+        
+        const parsed_json = JSON.parse(user_json);
+        const getProfPic = parsed_json.photoURL
+
+    
+        if(getProfPic != null)
+        setProfPic(parsed_json.photoURL)
+        
+    
+        console.log("prof:" + profPic)
+      });
+
+      
+    
+
+
 
   return (
 <>
@@ -38,7 +74,11 @@ const Dashboard = () => {
         <Grid  justify="center" item xs={8}>
             <div className ="userInfo">
                   <Stack direction="row" spacing={2}  style={{paddingBottom: 50}}  >
-                      <Avatar sx={{ width: 200, height: 200 }}/>
+                      <Avatar 
+                      sx={{ width: 200, height: 200 }}
+                      alt="/broken-image.jpg"
+                      src={profPic}
+                    />
                   </Stack>
 
                   <div className="information">
@@ -50,9 +90,8 @@ const Dashboard = () => {
                   </Grid>
     
                   <Grid item xs={8}>
-                  
-                      <div className="cards" style={{ padding: 23 }}>
-      <Card sx={{ maxWidth: 310 }} >
+                    <div className="cards" style={{ padding: 23 }}>
+                    <Card sx={{ maxWidth: 310 }} >
 
                       <CardActionArea>
                           <Link

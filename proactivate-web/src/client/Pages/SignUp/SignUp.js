@@ -5,6 +5,7 @@ import ModalDialog from "../../Components/ModalDialog";
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import "./SignUp.css";
+import { getAuth } from "firebase/auth";
 
 import {
   createUserWithEmailAndPassword,
@@ -12,6 +13,7 @@ import {
 } from "firebase/auth";
 
 import { auth } from "../../../server/config/firebase-config";
+
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router-dom';
 
@@ -42,6 +44,8 @@ const SignUp = () => {
   const [registerPassword, setRegisterPassword] = useState("");
   const [success,setSuccess] = useState(false);
   const [redirect, setredirect] = useState(null)
+  
+
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {

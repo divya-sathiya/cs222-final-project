@@ -1,4 +1,5 @@
 const express = require("express");
+const { getAuth } = require("firebase/auth");
 
 // recordRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -12,6 +13,7 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 module.exports = recordRoutes;
+
 
 /* TASKS */
 
