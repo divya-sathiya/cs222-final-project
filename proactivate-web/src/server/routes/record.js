@@ -99,7 +99,8 @@ recordRoutes.route("/deadline/add_stats").post(function (req, res) {
   const dbConnect = dbo.getDb();
   
   const matchDocument = {
-    user_auth_token: req.body.token,
+    user_auth_token: req.body.id,
+    id:req.body.id,
     assignment: req.body.name,
     deadline_id: req.body.deadline_id,
     due_date: req.body.date,
@@ -116,32 +117,72 @@ recordRoutes.route("/deadline/add_stats").post(function (req, res) {
         res.status(204).send();
       }
     });
+    console.log("posting to" + matchDocument);
 });
 
-//DEADLINE GET -> READ
-recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
-  //const bearerHeader = req.headers['Authorization'];
-  // if (bearerHeader){
-  //   const bearer = bearerHeader.split(' ');
-  //   const idToken = bearer[1];
-  //   const dbConnect = dbo.getDb();
+// //DEADLINE GET -> READ
+// recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
+//   var tokenId = req.body.token;
+//   console.log(tokenId)
+//     dbConnect
+//     .collection("deadlines")
+//     .find({user_auth_token: tokenId})
+//     .toArray(function (err, result) {
+//       if (err) {
+//         res.status(400).send("Error fetching user tasks!");
+//      } else {
+//         res.json(result);
+//         console.log(JSON.stringify(result))
+//       }
+//     });
+//   console.log("getting from" + tokenId);
+//   // var tokenId = req.body.token;
+ 
+  
+// });
+
+recordRoutes.route("/deadline/get_stats").get(function (req, res) {
   var tokenId = req.body.token;
+  console.log("getting from " + tokenId);
+  const dbConnect = dbo.getDb();
+  console.log(tokenId);
     dbConnect
     .collection("deadlines")
     .find({user_auth_token: tokenId})
     .toArray(function (err, result) {
       if (err) {
-        res.status(400).send("Error fetching user tasks!");
+        return next(err)
+        //res.status(400).send("Error fetching user tasks!");
      } else {
         res.json(result);
         console.log(JSON.stringify(result))
       }
     });
-  
-  // var tokenId = req.body.token;
- 
-  
+  console.log("getting from" + tokenId);
+  // var tokenId = req.body.token;  
 });
+
+
+// recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
+ 
+// try{ 
+//   var tokenId = req.body.token;
+//   console.log("token:" + tokenId)
+//     dbConnect
+//     .collection("deadlines")
+//     .find({user_auth_token: tokenId})
+//     .toArray(function (err, result) {
+//       res.json(result);
+//       console.log(JSON.stringify(result))
+//       console.log("getting from" + tokenId);
+//     })
+//   }
+//   catch(err){
+//         res.status(400).send("Error fetching user tasks!");
+//     }
+//   // var tokenId = req.body.token;
+  
+// });
 
 
 //DEADLINE DELETE

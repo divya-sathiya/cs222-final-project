@@ -75,24 +75,27 @@ const Dashboard = () => {
             <div className ="userInfo">
                   <Stack direction="row" spacing={2}  style={{paddingBottom: 50}}  >
                       <Avatar 
-                      sx={{ width: 200, height: 200 }}
+                      sx={{ width: 300, height: 300 }}
                       alt="Remy Sharp"
                       src={profPic}
                     />
                   </Stack>
 
                   <div className="information">
-                      <p>Total Studying Time: 4h 36m</p>
-                      <p>Task for today:</p>
-                      <ToDoItem />
+                      <h4>Total Studying Time: 4h 36m</h4>
+                      <h4>Task for today:</h4>
+                      <ToDoItem/>
                   </div>  
                   </div>            
                   </Grid>
     
+
                   <Grid item xs={8}>
                     <div className="cards" style={{ padding: 23 }}>
-                    <Card sx={{ maxWidth: 310 }} >
+                   
 
+                    <Stack spacing={3}>
+                    <Card sx={{ maxWidth: 500 }} >
                       <CardActionArea>
                           <Link
                               style={{ textDecoration: "none", color: "black"}}
@@ -113,7 +116,9 @@ const Dashboard = () => {
                               </CardContent>
                           </Link>
                       </CardActionArea>
+                      </Card>
 
+                      <Card sx={{ maxWidth: 500 }} >
                       <CardActionArea>
                           <Link
                               style={{ textDecoration: "none", color: "black" }}
@@ -135,7 +140,10 @@ const Dashboard = () => {
                               </CardContent>
                           </Link>
                       </CardActionArea>
+                      </Card>
 
+
+                      <Card sx={{ maxWidth: 500 }} >
                       <CardActionArea>
                           <Link style={{ textDecoration: "none", color: "black" }} to="/Timer">
                               <CardMedia
@@ -153,15 +161,15 @@ const Dashboard = () => {
                               </CardContent>
                           </Link>
                       </CardActionArea>
+                      </Card>
+                      </Stack>
 
-                  </Card>
+                 
                   </div>
                   </Grid>
                   </Grid>
     </Box>
-    <Button variant="outlined" onClick={()=>{handleLogout()}}>
-        Logout
-    </Button> 
+   
     </>
   );
 };

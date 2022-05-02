@@ -176,6 +176,10 @@ const MyAccount = () => {
   </Box>
 )}
 
+
+      
+     
+
       <Button variant="outlined" onClick={handleUpload}>Upload Profile Picture</Button>
       </Stack>
     </Box>

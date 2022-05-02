@@ -12,3 +12,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace, "Montserrat", sans-serif;
 }
+
+.font-link {
+  font-family: 'Roboto', sans-serif;
+  font-weight:400;
+}
