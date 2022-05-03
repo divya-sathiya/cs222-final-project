@@ -115,53 +115,13 @@ recordRoutes.route("/deadline/add_stats").post(function (req, res) {
         console.log(`Added a new task with id ${result.insertedId}`);
       }
     });
-    console.log("posting to" + matchDocument);
+   // console.log("posting to" + matchDocument);
 });
 
 // //DEADLINE GET -> READ
-// recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
-//   var tokenId = req.body.token;
-//   console.log(tokenId)
-//     dbConnect
-//     .collection("deadlines")
-//     .find({user_auth_token: tokenId})
-//     .toArray(function (err, result) {
-//       if (err) {
-//         res.status(400).send("Error fetching user tasks!");
-//      } else {
-//         res.json(result);
-//         console.log(JSON.stringify(result))
-//       }
-//     });
-//   console.log("getting from" + tokenId);
-//   // var tokenId = req.body.token;
- 
-  
-// });
-
-// recordRoutes.route("/deadline/get_stats").get(function (req, res) {
-//   var tokenId = req.body.token;
-//   console.log("getting from " + tokenId);
-//   const dbConnect = dbo.getDb();
-//   console.log(tokenId);
-//     dbConnect
-//     .collection("deadlines")
-//     .find({user_auth_token: tokenId})
-//     .toArray(function (err, result) {
-//       if (err) {
-//         return next(err)
-//         //res.status(400).send("Error fetching user tasks!");
-//      } else {
-//         res.json(result);
-//         console.log(JSON.stringify(result))
-//       }
-//     });
-//   console.log("getting from" + tokenId);
-//   // var tokenId = req.body.token;  
-// });
-
 recordRoutes.route("/deadline/get_stats/:id").get((req,res)=>{
   var tokenId = req.params.id;
+  
   const dbConnect = dbo.getDb();
   dbConnect.collection("deadlines")
   .find({uid: tokenId})
@@ -176,40 +136,26 @@ recordRoutes.route("/deadline/get_stats/:id").get((req,res)=>{
   });
 })
 
-// recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
- 
-// try{ 
-//   var tokenId = req.body.token;
-//   console.log("token:" + tokenId)
-//     dbConnect
-//     .collection("deadlines")
-//     .find({user_auth_token: tokenId})
-//     .toArray(function (err, result) {
-//       res.json(result);
-//       console.log(JSON.stringify(result))
-//       console.log("getting from" + tokenId);
-//     })
-//   }
-//   catch(err){
-//         res.status(400).send("Error fetching user tasks!");
-//     }
-//   // var tokenId = req.body.token;
-  
-// });
 
 
 //DEADLINE DELETE
-recordRoutes.route("/tasks/delete_task").get(async function (req, res) {
-  const tokenIdQuery = {user_auth_token: req.body.token};
+recordRoutes.route("/deadline/delete_stat/:id").delete(function (req, res) {
+  var objId = new ObjectId(req.params.id)
+  const matchDocument = {
+    _id: objId
+  };
+  console.log(matchDocument)
   const dbConnect = dbo.getDb();
 
   dbConnect
     .collection("deadlines")
-    .deleteOne(tokenIdQuery, function (err, _result) {
+    .deleteOne(matchDocument, function (err, _result) {
       if (err) {
-        res.status(400).send(`Error deleting listing with id ${tokenIdQuery.listing_id}!`);
+        //res.status(400).send(`Error deleting listing with id ${tokenIdQuery.listing_id}!`);
+        console.log("deleted");
       } else {
         console.log("1 document deleted");
+        console.log(JSON.stringify(_result));
       }
     });
 });

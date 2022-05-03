@@ -13,6 +13,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 
 import { IconButton } from "@mui/material";
+import { Button } from "@mui/material";
 import { auth } from "../../../server/config/firebase-config";
 import {
   getAuth,
@@ -40,6 +41,8 @@ const Deadline = () => {
         const [id,setId] = useState(0);
         const[time,setTime] =useState(0);     
         const [userToken,setUserToken] = useState("")
+        const [selectionModel, setSelectionModel] = React.useState([]);
+        
      
         const app = initializeApp(firebaseConfig);
         const [user,setUser] = useState([])
@@ -58,11 +61,6 @@ const Deadline = () => {
             setTime(dueDate.getTime());
         },[dueDate]);
         
-
-        // useEffect(()=>{
-        //   console.log("MY TASK:" + JSON.stringify(tableData))
-        // }, [tableData]);
-
 
         useEffect(()=>{
          
@@ -94,6 +92,22 @@ const Deadline = () => {
         }, [tasks]);
         
       
+        const handleDelete = () =>
+        {
+          for (var i=0;i<selectionModel.length;i++)
+          {
+            
+            var localId =  selectionModel[i]
+            axios.delete(`http://localhost:5000/deadline/delete_stat/${localId}`)
+          }
+          axios.get(`http://localhost:5000/deadline/get_stats/${UID}`
+          ).then((res) => {
+              var data = JSON.stringify(res.data)
+              setTasks(old => [...old,res]);
+            setTableData(res.data)
+            })
+    
+        }
         
         //submitTask calculates time, store in tasks array if triggered
         var submitTask = (e) =>
@@ -182,11 +196,14 @@ const Deadline = () => {
         </Grid>
       </Grid>
     </Box>
-       
+    <h4>Check and click the remove button when you completed your task!</h4>
     <div style={{ height: 750, width: '100%' }}>
-      
       <DataGrid
-       
+       checkboxSelection
+       onSelectionModelChange={(newSelectionModel) => {
+         setSelectionModel(newSelectionModel);
+       }}
+       selectionModel={selectionModel}
         columns={[ { field: '_id', hide: true },
                     { field: 'uid', hide: true },
                     { field: 'assignment', headerName: 'Assignment Name', width: 300 }, 
@@ -199,20 +216,31 @@ const Deadline = () => {
                   }
                  }, 
                   { field: 'due_date', headerName:'Due Date', width: 150 },
-                  { field: 'Delete', width:100, renderCell: () => {
-                    return(
-                        <IconButton aria-label="delete" sx={{color:"white"}} size="small" >
-                            <DeleteIcon fontSize="small" />
-                        </IconButton>);
-                  }
-                }]}
+                  // { field: 'Delete', width:100, renderCell: (params) => {
+                  //   return(
+                      
+
+                  //       <IconButton aria-label="delete" sx={{color:"white"}} size="small" onClick={() => handleDelete(params.row._id)} >
+                  //           <DeleteIcon fontSize="small" />
+                  //       </IconButton>);
+                  // }
+                //}
+              ]}
         getRowId={(row) => row._id}
         rows={tableData}
         
        
       />
 
+
     </div> 
+     <Button
+     variant="outlined"
+     onClick={() => {handleDelete()}}
+   >
+    Remove
+   </Button>
+
     </>
     );
 
