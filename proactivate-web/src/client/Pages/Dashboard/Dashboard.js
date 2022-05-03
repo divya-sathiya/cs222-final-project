@@ -37,7 +37,8 @@ const Dashboard = () => {
     const [user,setUser] = useState([])
     const [UID,setUID] = useState("");
     const [hours, setHours] = useState(0.0);
-    const [minutes, setMinute] = useState(0.0);
+    const [minutes, setMinutes] = useState(0.0);
+    const [seconds, setSeconds] = useState(0.0);
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
@@ -66,21 +67,23 @@ const Dashboard = () => {
         const getUID = parsed_json.uid
         if(getUID != null)
         setUID(parsed_json.uid)
-      });
+    },[user]);
     
       useEffect(()=>{
         console.log("BEFORE axios" + UID); //UID is printed our
         axios.get(`http://localhost:5000/time/get_total/${UID}`
         ).then((res) => {
-            var data = JSON.parse(res.data);
-            console.log(res);
-            console.log(res.data);
-            console.log(data);
+            console.log("RES" +res);
+            setMinutes(res.data[0].minutes);
+            setSeconds(res.data[0].seconds);
           })
-      }, );
+      },[UID] );
 
       
-      
+      useEffect(()=>{
+          var hour = minutes/60;
+          setHours(hour)
+      },[minutes]);
 
 
 
@@ -99,7 +102,7 @@ const Dashboard = () => {
                   </Stack>
 
                   <div className="information">
-                      <h4>Total Studying Time: 4h 36m</h4>
+                      <h4>Total Studying Time: {hours}h {minutes}m {seconds}s</h4>
                       <h4>Task for today:</h4>
                       <ToDoItem/>
                   </div>  
