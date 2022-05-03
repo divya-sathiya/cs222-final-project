@@ -50,7 +50,7 @@ const Login = () => {
   const [registerPassword, setRegisterPassword] = useState("");
   const [user, setUser] = useState({});
   const [success,setSuccess] = useState(false);
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
