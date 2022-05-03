@@ -185,7 +185,6 @@ recordRoutes.route("/time/add_session").post(function (req, res) {
 //TIME GET -> READ (this should return the total time for the specific user_token_id)
 recordRoutes.route("/time/get_total/:id").get((req, res)=>{
   var user_uid = req.params.id;
-  console.log("187")
   console.log("UID" + user_uid);
   console.log("UID" + JSON.stringify(user_uid));
   const dbConnect = dbo.getDb();
@@ -219,7 +218,6 @@ recordRoutes.route("/time/get_total/:id").get((req, res)=>{
       console.log("res parsed" + JSON.stringify(result))
     }
   });
-   
 });
 
 /* MY ACCOUNT */ 

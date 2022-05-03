@@ -36,8 +36,8 @@ const Dashboard = () => {
     const [profPic,setProfPic] = useState("/broken-image.jpg")
     const [user,setUser] = useState([])
     const [UID,setUID] = useState("");
-    const [hours, setHours] = useState(0);
-    const [minutes, setMinute] = useState(0);
+    const [hours, setHours] = useState(0.0);
+    const [minutes, setMinute] = useState(0.0);
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
@@ -72,9 +72,10 @@ const Dashboard = () => {
         console.log("BEFORE axios" + UID); //UID is printed our
         axios.get(`http://localhost:5000/time/get_total/${UID}`
         ).then((res) => {
-            var data = JSON.stringify(res.data);
-            var parsed_data = JSON.parse(data);
-            console.log("parse data" + res.data); 
+            var data = JSON.parse(res.data);
+            console.log(res);
+            console.log(res.data);
+            console.log(data);
           })
       }, );
 
