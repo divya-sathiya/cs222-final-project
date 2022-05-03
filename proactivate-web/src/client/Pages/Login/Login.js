@@ -13,6 +13,8 @@ import { signInWithGoogle } from "../../../server/config/firebase-config";
 import { auth } from "../../../server/config/firebase-config";
 import { margin } from "@mui/system";
 import { Navigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
 
 import {
   signInWithEmailAndPassword,
@@ -48,20 +50,15 @@ const Login = () => {
   const [registerPassword, setRegisterPassword] = useState("");
   const [user, setUser] = useState({});
   const [success,setSuccess] = useState(false);
+  const [open, setOpen] = React.useState(true);
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
 
-  const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
+ 
   //Sign in with email and password
   const signIn = async () => {
     try {
@@ -76,7 +73,7 @@ const Login = () => {
       localStorage.setItem("loggedIn", true);
     } catch (error) {
       setSuccess(false);
-      alert(error.message);
+      setOpen(true);
       console.log(success);
     } 
   };
@@ -96,6 +93,7 @@ const Login = () => {
 
   const responseErrorGoogle = (response) => {
     console.log(response);
+    setOpen(true);
   };
   
   if (success === true) {
@@ -104,57 +102,64 @@ const Login = () => {
 
   
   return (
+    
+    <>
+    <Collapse in={open}>
+    <Alert severity="error" onClose={() => {setOpen(false)} }>
+      Information is incorrect!
+    </Alert>
+    </Collapse>
     <div className="Login">
-      <form className={classes.root}>
-        <h className="title2">Welcome Back</h>
-        <TextField
-          label="Email"
-          variant="outlined"
-          type="email"
-          required
-          value={registerEmail}
-          onChange={(e) => setRegisterEmail(e.target.value)}
-          error = {false}
-        />
-        <TextField
-          label="Password"
-          variant="outlined"
-          type="password"
-          required
-          value={registerPassword}
-          onChange={(e) => setRegisterPassword(e.target.value)}
-          error =  {false}
-        />
-        <div>
-          <Button className="button2" onClick={signIn} variant="contained" style={{backgroundColor:'#12565a'}}>
-            Login
-          </Button>
-          <Divider style ={{color:'#12565a'}}>or</Divider>
-        
 
-          <div className="google">
-          <GoogleLogin
-            clientId="393335656297-7iu82fqvv69527r36jk2f7c6d0s7i9sg.apps.googleusercontent.com"
-            buttonText="Login with Google"
-            onSuccess={responseSuccessGoogle}
-            onFailure={responseErrorGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
-          </div>
+        <form className={classes.root}>
+          <h className="title2">Welcome Back</h>
 
-          <br></br>
-          <p className="logRout2">
-            {" "}
-            Don't have an account?
-            <Link className="logRout_b2" to="/SignUp">
+          <TextField
+            label="Email"
+            variant="outlined"
+            type="email"
+            required
+            value={registerEmail}
+            onChange={(e) => setRegisterEmail(e.target.value)}
+            error={false} />
+          <TextField
+            label="Password"
+            variant="outlined"
+            type="password"
+            required
+            value={registerPassword}
+            onChange={(e) => setRegisterPassword(e.target.value)}
+            error={false} />
+
+          <div>
+            <Button className="button2" onClick={signIn} variant="contained" style={{ backgroundColor: '#12565a' }}>
+              Login
+            </Button>
+            <Divider style={{ color: '#12565a' }}>or</Divider>
+
+
+            <div className="google">
+              <GoogleLogin
+                clientId="393335656297-7iu82fqvv69527r36jk2f7c6d0s7i9sg.apps.googleusercontent.com"
+                buttonText="Login with Google"
+                onSuccess={responseSuccessGoogle}
+                onFailure={responseErrorGoogle}
+                cookiePolicy={"single_host_origin"} />
+            </div>
+
+            <br></br>
+            <p className="logRout2">
               {" "}
-              Sign-Up
-            </Link>
-          </p>
-          <ModalDialog2 open={open} handleClose={handleClose} />
-        </div>
-      </form>
-    </div>
+              Don't have an account?
+              <Link className="logRout_b2" to="/SignUp">
+                {" "}
+                Sign-Up
+              </Link>
+            </p>
+
+          </div>
+        </form>
+      </div></>
   );
 };
 

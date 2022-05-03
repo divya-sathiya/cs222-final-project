@@ -153,6 +153,7 @@ recordRoutes.route("/deadline/delete_stat/:id").delete(function (req, res) {
         console.log("deleted");
       } else {
         console.log("1 document deleted");
+        
       }
     });
 });
