@@ -23,31 +23,32 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
   </> 
 
 
+
 function App() {
 
   return (
-    // <ThemeProvider theme={theme}>
-   
-
     <div>
-      <Navbar />
+     
       <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/SignUp" element={<SignUp />} />
       </Routes>
      <div>
+      
       <Main />
       </div>
     </div>
-    // </ThemeProvider>
 
   );
 }
 
 const Main = () => {
+  <Navbar />
   return (
+   
     <Routes>
+      
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/Timer" element={<Timer />} />
       <Route path="/Schedule" element={<Schedule />} />
