@@ -8,7 +8,6 @@ import Avatar from "@mui/material/Avatar";
 import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
 import Typography from '@mui/material/Typography';
-
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { auth } from "../../../server/config/firebase-config";

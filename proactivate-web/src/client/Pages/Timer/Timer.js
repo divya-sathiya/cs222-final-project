@@ -84,15 +84,15 @@ const Timer = () => {
   return (
     <div className="container">
       <div className="time">
-        <span className="minute">{minute}</span>
+      <span data-testid="min" className="minute">{minute}</span>
         <span>:</span>
-        <span className="second">{second}</span>
+        <span data-testid="sec" className="second">{second}</span>
       </div>
       <div className="buttons">
         <button onClick={() => setIsActive(!isActive)} className="start">
           {isActive ? "Pause" : "Start"}
         </button>
-        <button onClick={stopTimer} className="reset">
+        <button onClick={stopTimer} className="reset" role="button">
           Reset
         </button>
       </div>

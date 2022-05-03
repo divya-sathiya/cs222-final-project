@@ -24,39 +24,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 
-
-
-//  const theme = createTheme({
-//   palette: {
-//     type: 'light',
-//     primary: {
-//       main: '#badede',
-//       light: '#badede',
-//       dark: '#055458',
-//       contrastText: '#055458',
-//     },
-//     secondary: {
-//       main: '#055458',
-//     },
-//     text: {
-//       primary: 'rgba(235,248,255,0.87)',
-//       secondary:  'rgba(235,248,255,0.87)',
-//     },
-//     background: {
-//       default: '#11848a',
-//     },
-//     typography: {
-//       fontSize: 17,
-//     },
-//   },
-// });
-
 function App() {
 
   return (
-    // <ThemeProvider theme={theme}>
-   
-
     <div>
      
       <Routes>
@@ -65,18 +35,20 @@ function App() {
       <Route path="/SignUp" element={<SignUp />} />
       </Routes>
      <div>
-      <Navbar />
+      
       <Main />
       </div>
     </div>
-    // </ThemeProvider>
 
   );
 }
 
 const Main = () => {
+  <Navbar />
   return (
+   
     <Routes>
+      
       <Route path="/Dashboard" element={<Dashboard />} />
       <Route path="/Timer" element={<Timer />} />
       <Route path="/Schedule" element={<Schedule />} />
