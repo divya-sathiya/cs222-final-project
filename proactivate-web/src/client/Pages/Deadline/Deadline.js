@@ -8,7 +8,6 @@ import DateTimePicker from '@mui/lab/DateTimePicker';
 import CustomizedProgressBars from "../../Components/ProgressBar";
 import Box from '@mui/material/Box';
 import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import "./Deadline.css";

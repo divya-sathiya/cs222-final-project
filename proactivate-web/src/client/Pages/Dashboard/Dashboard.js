@@ -10,11 +10,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import Image from "mui-image";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import { auth } from "../../../server/config/firebase-config";
 import {
