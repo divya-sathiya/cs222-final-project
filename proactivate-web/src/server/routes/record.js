@@ -131,7 +131,6 @@ recordRoutes.route("/deadline/get_stats/:id").get((req,res)=>{
       res.status(400).send("Error fetching deadlines!");
    } else {
       res.json(result);
-      console.log(JSON.stringify(result))
     }
   });
 })
@@ -144,7 +143,6 @@ recordRoutes.route("/deadline/delete_stat/:id").delete(function (req, res) {
   const matchDocument = {
     _id: objId
   };
-  console.log(matchDocument)
   const dbConnect = dbo.getDb();
 
   dbConnect
@@ -155,7 +153,6 @@ recordRoutes.route("/deadline/delete_stat/:id").delete(function (req, res) {
         console.log("deleted");
       } else {
         console.log("1 document deleted");
-        console.log(JSON.stringify(_result));
       }
     });
 });

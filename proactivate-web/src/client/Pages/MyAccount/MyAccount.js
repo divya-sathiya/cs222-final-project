@@ -5,7 +5,9 @@ import Stack from '@mui/material/Stack';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import Grid from '@mui/material/Grid';
+import EditIcon from "@material-ui/icons/Edit";
+import SaveIcon from "@material-ui/icons/Save";
+import Typography from '@mui/material/Typography';
 
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
@@ -18,6 +20,7 @@ import {
   updateProfile 
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBGOJOMAARdo4ZPfFBpkHzfRezVurJJOXM",
@@ -48,28 +51,22 @@ const MyAccount = () => {
     setUser(currentUser);
   });
 
- 
 
   useEffect(() => {
-    console.log("user: " + JSON.stringify(user))
     const user_json = JSON.stringify(user);
     
     const parsed_json = JSON.parse(user_json);
     const getEmail = parsed_json.email
     const getName = parsed_json.name
-
     if(getEmail != null)
     setEmail(parsed_json.email)
-    
     if (getName != null)
     setName(parsed_json.name)
+  },[user]);
 
-   // console.log("email:" + email)
-  },[]);
 
   const handleUpload = () =>
   {
-    console.log("image"+ imageUrl)
     updateProfile(auth.currentUser, {
       photoURL: imageUrl
     }).then(() => {
@@ -81,39 +78,39 @@ const MyAccount = () => {
 
   //toggle the save and edit button
   //activate read only and deactivate it so the user can update their account information
-  const handleEdit = () => 
-  {
-    if (read == true)
-    {
-      setRead(false)
-    }
-    else
-    {
-      setRead(true)
+  
+  const [disabledField, setDisabledField] = useState(true);
+  const [disabledEdit, setDisabledEdit] = useState(false);
+  const [disabledSave, setDisabledSave] = useState(true);
 
-      updateEmail(auth.currentUser, email).then(() => {
-        console.log("email updated")
-      }).catch((error) => {
-        console.log("error")
-      });
+  const enableEdit = () => {
+    setDisabledField(false);
+    setDisabledSave(false);
+    setDisabledEdit(true);
+     
+  };
 
-      updateProfile(auth.currentUser, {
-        displayName: name,
-        email: email
-      }).then(() => {
-        console.log("Profile updated!") 
-      }).catch((error) => {
-        console.log("error")
-      });
-      
-     } 
-    if (text == "edit")
-      setText("save")
-    else
-      setText("edit")
-      console.log(read)
+  const saveEdit = () => {
+    setDisabledField(true);
+    setDisabledSave(true);
+    setDisabledEdit(false); 
 
-  }
+    updateEmail(auth.currentUser, email).then(() => {
+      console.log("email updated")
+    }).catch((error) => {
+      console.log("error")
+    });
+
+     updateProfile(auth.currentUser, {
+      displayName: name,
+      email: email
+    }).then(() => {
+      console.log("Profile updated!") 
+    }).catch((error) => {
+      console.log("error")
+    });
+    
+  };
 
   useEffect(() => {
     if (selectedImage) {
@@ -122,12 +119,15 @@ const MyAccount = () => {
 
   }, [selectedImage]);
 
-  return(
 
-
+  return(  
     <Box sx={{ width: '100%' }}>
-    
+     <Typography align="center" variant="h3"  gutterBottom component="div" sx={{ p: 5 }} style={{color: "white"}} >
+   My Account
+  </Typography>
+ 
          <Stack spacing={12} direction="row" justifyContent="center">
+       
          <Box 
                   sx={{
                     '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -149,10 +149,11 @@ const MyAccount = () => {
        {imageUrl && selectedImage && (
               <><Avatar
               sx={{ width: 300, height: 300 }}
-              alt={selectedImage.name}
+              alt="/broken-image.jpg"
               src={imageUrl} /><Button variant="outlined" onClick={handleUpload} style={{ color: "white" }}>Upload Profile Picture</Button></>   
         )}
          </Box>
+         
                 <Box
                   component="form"
                   sx={{
@@ -166,22 +167,37 @@ const MyAccount = () => {
 
                     <TextField
                       label="Email"
-                      InputProps={{
-                        readOnly: read,
-                      }}
+                      disabled={disabledField}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)} />
                     <TextField
 
                       label="Name"
-                      InputProps={{
-                        readOnly: read,
-                      }}
+                      disabled={disabledField}
                       value={name}
                       onChange={(e) => setName(e.target.value)} />
 
-
-                    <Button variant="outlined" onClick={handleEdit}>{text}</Button>
+                <Button
+                    onClick={enableEdit}
+                    variant="contained"
+                    color="primary"
+                    disabled={disabledEdit}
+                    
+                    startIcon={<EditIcon />}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={saveEdit}
+                    variant="contained"
+                    color="primary"
+                    disabled={disabledSave}
+                    
+                    startIcon={<SaveIcon />}
+                  >
+                    Save
+                  </Button>
+                    {/* <Button variant="outlined" onClick={handleEdit}>{text}</Button> */}
 
                   </Stack>
                 </Box>
