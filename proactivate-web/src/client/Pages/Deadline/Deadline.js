@@ -46,74 +46,58 @@ const Deadline = () => {
         const [UID,setUID] = useState("");
         const [tableData, setTableData] = useState([])
 
-        onAuthStateChanged(auth, (currentUser) => {
+        useEffect(()=>
+        {
+          onAuthStateChanged(auth, (currentUser) => {
           setUser(currentUser);
         });
-      
+      },[]);
+
         useEffect(()=>
         {
             setTime(dueDate.getTime());
         },[dueDate]);
         
 
-        useEffect(()=>{
-          console.log("MY TASK:" + tasks)
-        }, [tasks]);
+        // useEffect(()=>{
+        //   console.log("MY TASK:" + JSON.stringify(tableData))
+        // }, [tableData]);
 
-        const getData = () => {
-          console.log("im here bith")
-          console.log("user:" + UID)
-          axios.get('http://localhost:5000/deadline/get_stats',{token: UID}).then((res) => {
-            // setTasks(JSON.stringify(res.data))
-            // setTableData(JSON.stringify(res.data))
-            var data=JSON.parse(JSON.stringify(res.data))
-            //setTasks(old => [...old, data]);
-            console.log("data"+ JSON.parse(JSON.stringify(res.data)))
-          })
-        }
 
         useEffect(()=>{
-          console.log("user: " + JSON.stringify(user))
+         
           const user_json = JSON.stringify(user);
           const parsed_json = JSON.parse(user_json);
           const getUID = parsed_json.uid
           if(getUID != null)
           setUID(parsed_json.uid)
-          console.log("UID: "+UID)
+        
+          var localUID = parsed_json.uid
+          // console.log("UID: "+localUID)
+          axios.get(`http://localhost:5000/deadline/get_stats/${localUID}`
+        ).then((res) => {
+          setTableData(res.data)
+            // console.log("data"+ (res.data))
+          })
+
         }, [user]);
 
         useEffect(()=>{
-          getData();
-        },[UID])
-       
-        // useEffect(()=>
-        // {
-        //   console.log("here")
-        //   const fetchData = async () => {
-        //     try{
-        //       const {data:res} = await axios.get('http://localhost:5000/deadline/get_stats',
-        //       { token: parsed_json.uid}
-        //   //     {headers: 
-        //   //         {'Authorization':  `Bearer ${auth.getIdToken(true)}`}
-        //   // }
-        //     );
-        //       setTasks(JSON.stringify(res))
-        //       console.log("task"+ JSON.stringify(res))
-        //     }
-        //     catch(e){
-        //           console.log("error")
-        //     }
-        //   }
-        //   fetchData();
-        // },[tasks]);
-
-
-
+          axios.get(`http://localhost:5000/deadline/get_stats/${UID}`
+          ).then((res) => {
+              var data = JSON.stringify(res.data)
+              setTasks(old => [...old,res]);
+            setTableData(res.data)
+              // console.log("data"+ (res.data))
+            })
+  
+        }, [tasks]);
+        
+      
+        
         //submitTask calculates time, store in tasks array if triggered
         var submitTask = (e) =>
         {
-           const user_json = JSON.stringify(user);
-           const parsed_json = JSON.parse(user_json);
             var date = dueDate
             var dd = String(date.getDate()).padStart(2, '0');
             var mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -121,7 +105,8 @@ const Deadline = () => {
            
             date = mm + '/' + dd + '/' + yyyy;
             setId(id+1)
-            console.log(date)
+            // console.log(date)
+            // console.log("UID: "+UID)
             let task = {
                 "id": id+1,
                 "title": title,
@@ -130,18 +115,17 @@ const Deadline = () => {
                 "time": time
             }
             let body = {
-              "id": UID,
-              "deadline_id": id+1,
-              "name": title,
-              "date": date,
-              "complete": status,
-              "time": time
+              uid: UID,
+              deadline_id: id+1,
+              name: title,
+              date: date,
+              complete: status,
+              time: time
             }
             setTasks(old => [...old, task]);
-            console.log("I AM HERE");
             const res = axios.post("http://localhost:5000/deadline/add_stats", body
-            );
-            
+            );   
+           
         }
         
 
@@ -202,15 +186,19 @@ const Deadline = () => {
     <div style={{ height: 750, width: '100%' }}>
       
       <DataGrid
-        columns={[{ field: "title", headerName: 'Assignment Name', width: 300 }, 
-                  { field:"time", headerName:'Progress Bar', width: 700, renderCell: (params) => {
+       
+        columns={[ { field: '_id', hide: true },
+                    { field: 'uid', hide: true },
+                    { field: 'assignment', headerName: 'Assignment Name', width: 300 }, 
+                    { field: 'deadline_id', hide: true },
+                  { field:'time_due', headerName:'Progress Bar', width: 700, renderCell: (params) => {
                     return(
-                        <CustomizedProgressBars time={params.row.time}/>
+                        <CustomizedProgressBars time={params.row.time_due}/>
                        
                         );
                   }
                  }, 
-                  { field: "dueDate", headerName:'Due Date', width: 150 },
+                  { field: 'due_date', headerName:'Due Date', width: 150 },
                   { field: 'Delete', width:100, renderCell: () => {
                     return(
                         <IconButton aria-label="delete" sx={{color:"white"}} size="small" >
@@ -218,7 +206,9 @@ const Deadline = () => {
                         </IconButton>);
                   }
                 }]}
-        rows={tasks}
+        getRowId={(row) => row._id}
+        rows={tableData}
+        
        
       />
 

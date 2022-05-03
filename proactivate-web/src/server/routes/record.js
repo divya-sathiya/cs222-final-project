@@ -99,8 +99,7 @@ recordRoutes.route("/deadline/add_stats").post(function (req, res) {
   const dbConnect = dbo.getDb();
   
   const matchDocument = {
-    user_auth_token: req.body.id,
-    id:req.body.id,
+    uid:req.body.uid,
     assignment: req.body.name,
     deadline_id: req.body.deadline_id,
     due_date: req.body.date,
@@ -114,7 +113,6 @@ recordRoutes.route("/deadline/add_stats").post(function (req, res) {
         res.status(400).send("Error inserting task!");
       } else {
         console.log(`Added a new task with id ${result.insertedId}`);
-        res.status(204).send();
       }
     });
     console.log("posting to" + matchDocument);
@@ -141,27 +139,42 @@ recordRoutes.route("/deadline/add_stats").post(function (req, res) {
   
 // });
 
-recordRoutes.route("/deadline/get_stats").get(function (req, res) {
-  var tokenId = req.body.token;
-  console.log("getting from " + tokenId);
-  const dbConnect = dbo.getDb();
-  console.log(tokenId);
-    dbConnect
-    .collection("deadlines")
-    .find({user_auth_token: tokenId})
-    .toArray(function (err, result) {
-      if (err) {
-        return next(err)
-        //res.status(400).send("Error fetching user tasks!");
-     } else {
-        res.json(result);
-        console.log(JSON.stringify(result))
-      }
-    });
-  console.log("getting from" + tokenId);
-  // var tokenId = req.body.token;  
-});
+// recordRoutes.route("/deadline/get_stats").get(function (req, res) {
+//   var tokenId = req.body.token;
+//   console.log("getting from " + tokenId);
+//   const dbConnect = dbo.getDb();
+//   console.log(tokenId);
+//     dbConnect
+//     .collection("deadlines")
+//     .find({user_auth_token: tokenId})
+//     .toArray(function (err, result) {
+//       if (err) {
+//         return next(err)
+//         //res.status(400).send("Error fetching user tasks!");
+//      } else {
+//         res.json(result);
+//         console.log(JSON.stringify(result))
+//       }
+//     });
+//   console.log("getting from" + tokenId);
+//   // var tokenId = req.body.token;  
+// });
 
+recordRoutes.route("/deadline/get_stats/:id").get((req,res)=>{
+  var tokenId = req.params.id;
+  const dbConnect = dbo.getDb();
+  dbConnect.collection("deadlines")
+  .find({uid: tokenId})
+  .toArray(function (err, result) {
+    if (err) {
+      //return next(err)
+      res.status(400).send("Error fetching deadlines!");
+   } else {
+      res.json(result);
+      console.log(JSON.stringify(result))
+    }
+  });
+})
 
 // recordRoutes.route("/deadline/get_stats").get(async function (req, res) {
  
