@@ -52,7 +52,9 @@ useEffect(() => {
   return (
     <FormGroup>
       {todos.map((items) => (
-        <FormControlLabel control={<Checkbox/>} label={items} style={{}} />
+        <FormControlLabel control={<Checkbox style ={{
+          color: '#badede',
+        }}/>} label={items} style={{}} />
       ))}
     </FormGroup>
   );

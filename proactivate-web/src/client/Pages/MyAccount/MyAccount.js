@@ -4,6 +4,8 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { IconButton } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Grid from '@mui/material/Grid';
 
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
@@ -32,7 +34,6 @@ const firebaseConfig = {
 
 
 const MyAccount = () => {
-  const [username,setUsername] = useState("");
   const [email,setEmail] = useState("");
   const [name,setName] = useState("");
   const [read, setRead] = useState(true);
@@ -64,7 +65,7 @@ const MyAccount = () => {
     setName(parsed_json.name)
 
    // console.log("email:" + email)
-  });
+  },[]);
 
   const handleUpload = () =>
   {
@@ -122,67 +123,74 @@ const MyAccount = () => {
   }, [selectedImage]);
 
   return(
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
 
-<Stack spacing={2}>
-  
-      <TextField
-                label="Email"
-                InputProps={{
-                  readOnly: read,
-                }}
-                value= {email}
-                onChange={(e) => setEmail(e.target.value)}
+
+    <Box sx={{ width: '100%' }}>
+    
+         <Stack spacing={12} direction="row" justifyContent="center">
+         <Box 
+                  sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                  }} textAlign="center">
+    <input 
+        accept="image/*" 
+        type="file" 
+        id="select-image"
+        style={{ display: 'none' }}
+        onChange={(e) => {setSelectedImage(e.target.files[0]); console.log(selectedImage);}}
       />
-    <TextField
-                    
-                    label="Name"
-                    InputProps={{
-                      readOnly: read,
-                    }}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-          />
-         
-               
-<Button variant="outlined" onClick={handleEdit}>{text}</Button>
 
-     
-
-<input 
-    accept="image/*" 
-    type="file" 
-    id="select-image"
-    style={{ display: 'none' }}
-    onChange={(e) => {setSelectedImage(e.target.files[0]); console.log(selectedImage);}}
-  />
-  <label htmlFor="select-image">
-        <IconButton aria-label="upload" sx={{color:"white"}} size="medium" component="span">
-                            <AddAPhotoIcon fontSize="medium" />
-        </IconButton>
-        </label>
+    <label htmlFor="select-image">
+          <IconButton aria-label="upload" sx={{color:"white"}} size="medium" component="span">
+                              <AddAPhotoIcon fontSize="medium" />
+          </IconButton>
+    </label>
 
        {imageUrl && selectedImage && (
-  <Box mt={2} textAlign="center">
-    <div>Image Preview:</div>
-    <img src={imageUrl} alt={selectedImage.name} height="300px" />
-  </Box>
-)}
+              <><Avatar
+              sx={{ width: 300, height: 300 }}
+              alt={selectedImage.name}
+              src={imageUrl} /><Button variant="outlined" onClick={handleUpload} style={{ color: "white" }}>Upload Profile Picture</Button></>   
+        )}
+         </Box>
+                <Box
+                  component="form"
+                  sx={{
+                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+
+                  <Stack spacing={2}>
+
+                    <TextField
+                      label="Email"
+                      InputProps={{
+                        readOnly: read,
+                      }}
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)} />
+                    <TextField
+
+                      label="Name"
+                      InputProps={{
+                        readOnly: read,
+                      }}
+                      value={name}
+                      onChange={(e) => setName(e.target.value)} />
 
 
-      
-     
+                    <Button variant="outlined" onClick={handleEdit}>{text}</Button>
 
-      <Button variant="outlined" onClick={handleUpload}>Upload Profile Picture</Button>
-      </Stack>
+                  </Stack>
+                </Box>
+    </Stack> 
     </Box>
+
+
+    
+
   
 
   );

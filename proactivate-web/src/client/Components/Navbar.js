@@ -46,25 +46,6 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  // const handleNavigation = (route) =>
-  // {
-  //   if(!user && route!="SignUp")
-  //   {
-  //     return "/SignUp";
-  //   }
-  //   else if(!user && route!="SignUp")
-  //   {
-  //     return "/Login";
-  //   }
-  //   else if(user && route!="Logout")
-  //   {
-  //     return "/" + route;
-  //   }
-  //   else
-  //   {
-  //     return "/Logout";
-  //   }
-  // };
 
   
   return (

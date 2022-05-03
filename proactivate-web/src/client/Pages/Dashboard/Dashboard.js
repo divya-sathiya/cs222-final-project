@@ -107,7 +107,7 @@ const Dashboard = () => {
                                   image="/images/photo1.jpeg"
                                   alt="Schedule" />
                               <CardContent>
-                                  <Typography gutterBottom variant="h5" component="div">
+                                  <Typography gutterBottom variant="h5" component="div" style={{color: '#055458'}}>
                                       Schedule
                                   </Typography>
                                   <Typography variant="body2" color="text.secondary">
@@ -131,7 +131,7 @@ const Dashboard = () => {
                               
                                   alt="Deadline" />
                               <CardContent>
-                                  <Typography gutterBottom variant="h5" component="div">
+                                  <Typography gutterBottom variant="h5" component="div" style={{color: '#055458'}}>
                                       Deadlines
                                   </Typography>
                                   <Typography variant="body2" color="text.secondary">
@@ -152,7 +152,7 @@ const Dashboard = () => {
                                   image="/images/photo3.jpeg"
                                   alt="Timer" />
                               <CardContent>
-                                  <Typography gutterBottom variant="h5" component="div">
+                                  <Typography gutterBottom variant="h5" component="div" style={{color: '#055458'}}>
                                       Timer
                                   </Typography>
                                   <Typography variant="body2" color="text.secondary">

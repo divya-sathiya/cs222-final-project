@@ -12,21 +12,51 @@ import { Navigate, Switch,BrowserRouter } from 'react-router-dom';
 
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
+
 import "./App.css";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
  <><script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
   crossorigin></script>
-  <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
   <script src="App.css"></script>
   </> 
 
 
 
 
+
+//  const theme = createTheme({
+//   palette: {
+//     type: 'light',
+//     primary: {
+//       main: '#badede',
+//       light: '#badede',
+//       dark: '#055458',
+//       contrastText: '#055458',
+//     },
+//     secondary: {
+//       main: '#055458',
+//     },
+//     text: {
+//       primary: 'rgba(235,248,255,0.87)',
+//       secondary:  'rgba(235,248,255,0.87)',
+//     },
+//     background: {
+//       default: '#11848a',
+//     },
+//     typography: {
+//       fontSize: 17,
+//     },
+//   },
+// });
+
 function App() {
 
   return (
+    // <ThemeProvider theme={theme}>
+   
+
     <div>
      
       <Routes>
@@ -39,7 +69,7 @@ function App() {
       <Main />
       </div>
     </div>
-
+    // </ThemeProvider>
 
   );
 }

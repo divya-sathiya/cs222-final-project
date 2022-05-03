@@ -11,7 +11,7 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
-
+import "./Deadline.css";
 import { IconButton } from "@mui/material";
 import { Button } from "@mui/material";
 import { auth } from "../../../server/config/firebase-config";
@@ -199,6 +199,7 @@ const Deadline = () => {
     <h4>Check and click the remove button when you completed your task!</h4>
     <div style={{ height: 750, width: '100%' }}>
       <DataGrid
+      style={{color:"white"}}
        checkboxSelection
        onSelectionModelChange={(newSelectionModel) => {
          setSelectionModel(newSelectionModel);
@@ -206,9 +207,9 @@ const Deadline = () => {
        selectionModel={selectionModel}
         columns={[ { field: '_id', hide: true },
                     { field: 'uid', hide: true },
-                    { field: 'assignment', headerName: 'Assignment Name', width: 300 }, 
+                    { field: 'assignment', headerName: 'Assignment Name', width: 500 }, 
                     { field: 'deadline_id', hide: true },
-                  { field:'time_due', headerName:'Progress Bar', width: 700, renderCell: (params) => {
+                  { field:'time_due', headerName:'Progress Bar', width: 1000, renderCell: (params) => {
                     return(
                         <CustomizedProgressBars time={params.row.time_due}/>
                        
@@ -232,14 +233,16 @@ const Deadline = () => {
        
       />
 
-
-    </div> 
-     <Button
+  <Button
      variant="outlined"
+     style ={{color: "white"}}
+     sx={{color:"white"}}
      onClick={() => {handleDelete()}}
    >
     Remove
    </Button>
+    </div> 
+     
 
     </>
     );
