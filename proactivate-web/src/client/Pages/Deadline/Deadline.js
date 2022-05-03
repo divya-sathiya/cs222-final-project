@@ -86,7 +86,7 @@ const Deadline = () => {
               var data = JSON.stringify(res.data)
               setTasks(old => [...old,res]);
             setTableData(res.data)
-              // console.log("data"+ (res.data))
+              console.log("datas"+ (res.data))
             })
   
         }, [tasks]);

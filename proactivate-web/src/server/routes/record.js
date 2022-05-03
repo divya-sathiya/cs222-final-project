@@ -164,8 +164,9 @@ recordRoutes.route("/time/add_session").post(function (req, res) {
   const dbConnect = dbo.getDb();
   
   const matchDocument = {
-    user_auth_token: req.body.token,
-    duration: req.body.duration
+    uid: req.body.uid,
+    minutes: req.body.minutes,
+    seconds: req.body.seconds
   };
   dbConnect
     .collection("time")
@@ -181,18 +182,19 @@ recordRoutes.route("/time/add_session").post(function (req, res) {
 
 
 //TIME GET -> READ (this should return the total time for the specific user_token_id)
-recordRoutes.route("/time/get_total").get(async function (req, res) {
-  var tokenId = req.body.token;
+recordRoutes.route("/time/get_total/:id").get((req, res)=>{
+  var user_uid = req.params.id;
+  console.log("187")
   const dbConnect = dbo.getDb();
   var result = dbConnect
     .collection("time")
     .aggregate(
-      [
+      [ { $match : { uid: user_uid } } , 
         {
           $group:
             {
-              user_auth_token: tokenId,
-              total_time: { $sum: "$duration" },
+              minutes: { $sum: "$minutes" },
+              seconds: { $sum: "$seconds" } 
             }
         }
       ]
@@ -201,8 +203,6 @@ recordRoutes.route("/time/get_total").get(async function (req, res) {
 });
 
 /* MY ACCOUNT */ 
-// WARNING: User is not permitted to change email once they register
-
 //MY ACCOUNT POST -> CREATE (this should create a user profile when sign up happens)
 recordRoutes.route("/account/add_profile").post(function (req, res) {
   const dbConnect = dbo.getDb();

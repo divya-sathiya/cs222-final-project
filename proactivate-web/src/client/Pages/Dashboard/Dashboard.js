@@ -21,6 +21,7 @@ import {
     onAuthStateChanged,
     getAuth
   } from "firebase/auth";
+import axios from 'axios';
 
 
 const label = { inputProps: { "aria-label": "demo" } };
@@ -36,6 +37,9 @@ const Item = styled(Paper)(({ theme }) => ({
 const Dashboard = () => {
     const [profPic,setProfPic] = useState("/broken-image.jpg")
     const [user,setUser] = useState([])
+    const [UID,setUID] = useState("");
+    const [hours, setHours] = useState(0);
+    const [minutes, setMinute] = useState(0);
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
@@ -60,10 +64,24 @@ const Dashboard = () => {
         
     
         console.log("prof:" + profPic)
+
+        const getUID = parsed_json.uid
+        if(getUID != null)
+        setUID(parsed_json.uid)
       });
+    
+      useEffect(()=>{
+        console.log("BEFORE axios" + UID);
+        axios.get(`http://localhost:5000/time/get_total/${UID}`
+        ).then((res) => {
+            var data = JSON.stringify(res.data);
+            var parsed_data = JSON.parse(data);
+            console.log("parse data" + res.data); 
+          })
+      }, );
 
       
-    
+      
 
 
 
