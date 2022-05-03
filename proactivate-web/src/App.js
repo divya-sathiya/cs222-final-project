@@ -35,7 +35,7 @@ function App() {
       <Route path="/SignUp" element={<SignUp />} />
       </Routes>
      <div>
-      
+     <Navbar />
       <Main />
       </div>
     </div>
@@ -44,9 +44,8 @@ function App() {
 }
 
 const Main = () => {
-  <Navbar />
+  
   return (
-   
     <Routes>
       
       <Route path="/Dashboard" element={<Dashboard />} />

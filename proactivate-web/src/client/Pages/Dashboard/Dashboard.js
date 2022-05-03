@@ -69,7 +69,7 @@ const Dashboard = () => {
       });
     
       useEffect(()=>{
-        console.log("BEFORE axios" + UID);
+        console.log("BEFORE axios" + UID); //UID is printed our
         axios.get(`http://localhost:5000/time/get_total/${UID}`
         ).then((res) => {
             var data = JSON.stringify(res.data);

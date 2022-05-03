@@ -153,7 +153,7 @@ recordRoutes.route("/deadline/delete_stat/:id").delete(function (req, res) {
         console.log("deleted");
       } else {
         console.log("1 document deleted");
-        
+
       }
     });
 });
@@ -186,21 +186,40 @@ recordRoutes.route("/time/add_session").post(function (req, res) {
 recordRoutes.route("/time/get_total/:id").get((req, res)=>{
   var user_uid = req.params.id;
   console.log("187")
+  console.log("UID" + user_uid);
+  console.log("UID" + JSON.stringify(user_uid));
   const dbConnect = dbo.getDb();
-  var result = dbConnect
+  dbConnect
     .collection("time")
     .aggregate(
       [ { $match : { uid: user_uid } } , 
         {
           $group:
             {
+              _id: "$uid",
               minutes: { $sum: "$minutes" },
               seconds: { $sum: "$seconds" } 
             }
+        },
+        {
+          $project: {
+            "_id": 0,
+            uid: "$_id",
+            "minutes":1,
+            "seconds":1,
+          }
         }
       ]
-   );
-   res.json(result);
+   ).toArray(function (err, result) {
+    if (err) {
+      res.status(400).send("Error fetching user tasks!");
+   } else {
+      res.json(result);
+      console.log("res" + result)
+      console.log("res parsed" + JSON.stringify(result))
+    }
+  });
+   
 });
 
 /* MY ACCOUNT */ 
