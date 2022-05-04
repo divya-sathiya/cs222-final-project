@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { useState } from "react";
-//import ModalDialog from "../../Components/ModalDialog";
+import { useState,useEffect } from "react";
+import ModalDialog from "../../Components/ModalDialog";
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import "./SignUp.css";
+import { getAuth } from "firebase/auth";
 
 import {
   createUserWithEmailAndPassword,
@@ -12,7 +13,9 @@ import {
 } from "firebase/auth";
 
 import { auth } from "../../../server/config/firebase-config";
+
 import { Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 //Pop up the sign up component when clicked, close otherwise
 const useStyles = makeStyles((theme) => ({
@@ -36,40 +39,44 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
   const classes = useStyles();
-  const [username, setUsername] = useState("");
   const [user, setUser] = useState({});
-
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
-
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [success,setSuccess] = useState(false);
+  const [redirect, setredirect] = useState(null)
+  
 
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+  });
+},[]);
+
+  //Sign-up using email and password
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const user_info = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
-      console.log(user);
+      setSuccess(true);
+      localStorage.setItem("current_user_authToken", user_info.user.getIdToken);
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
+  if (success === true) {
+    return <Navigate to="/Dashboard" />;
+  }
+  
+ 
   return (
     <div className="SignUp">
       <form className={classes.root}>
         <h className="title">PROACTIVATE.</h>
-         <TextField
-          label="Username"
-          variant="outlined"
-          required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        /> 
         <TextField
           label="Email"
           variant="outlined"
@@ -78,8 +85,6 @@ const SignUp = () => {
           value={registerEmail}
           onChange={(e) => setRegisterEmail(e.target.value)}
         />
-
-
         <TextField
           label="Password"
           variant="outlined"
@@ -88,14 +93,10 @@ const SignUp = () => {
           value={registerPassword}
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
-
         <div>
-
-          <Button onClick={register} className="button1" type="submit" variant="contained" style={{backgroundColor:'#12565a'}} >
+          <Button onClick={register} className="button1" variant="contained" style={{backgroundColor:'#12565a'}} >
             Sign Up
           </Button>
-
-
           <p className="logRout">
             {" "}
             Already have an account?

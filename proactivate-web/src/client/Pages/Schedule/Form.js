@@ -7,6 +7,12 @@ const Form = ({ setInputText, setInputDay, todos, setTodos, inputText, inputDay}
     };
     const submitTodoHandler = (e) => {
         e.preventDefault();
+        if (!inputText) {
+            return;
+        }
+        if (!inputDay) {
+            return;
+        }
         setTodos([
             ...todos, 
             { text: inputText, day: inputDay, completed: false, id: Math.random() * 1000},
@@ -29,10 +35,11 @@ const Form = ({ setInputText, setInputDay, todos, setTodos, inputText, inputDay}
                     className="todo-input"
                     placeholder="Enter task"
                     maxlength="15"
+                    data-testid="todo-input"
                 />
             </div>
             
-            <div className="select">
+            <div className="select" data-testid="select">
                 <select className="dayName" onChange= {inputDayHandler}>
                     <option value="day">Day</option>
                     <option value="monday">Monday</option>
@@ -46,6 +53,7 @@ const Form = ({ setInputText, setInputDay, todos, setTodos, inputText, inputDay}
             </div>
 
             <button
+                data-testid="submit"
                 className="todo-button" 
                 type="submit">
                 <i className="fas fa-plus-square"></i>

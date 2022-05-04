@@ -18,3 +18,10 @@ thead
   border-bottom: 1px solid white;
 }
 
+h4{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: white;
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
